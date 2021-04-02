@@ -1,6 +1,7 @@
 # Fetch-master 6000
 
 ## Simple fecthing tool  
+ASCII art for dilbert is taken from the Kakoune text editor
 
 ### Screenshots
 ![fm6000.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/fm6000.png)
