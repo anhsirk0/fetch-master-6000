@@ -12,23 +12,23 @@ download it make it executable and put in your path folder
 
 with wget
 ``` bash
-wget https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/dilbert.pl -O dilbert
+wget https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl -O fm6000
 ```
 
 with curl
 ``` bash
-curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/dilbert.pl --output dilbert
+curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl --output fm6000
 ```
 making it executable
 ```bash
-chmod +x dilbert
+chmod +x fm6000
 ```
 
 runing the script
 ```bash
-./dilbert
+./fm6000
 ```
 or
 ```bash
-bash dilbert
+bash fm6000
 ```
