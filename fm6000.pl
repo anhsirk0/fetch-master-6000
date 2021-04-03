@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 use Term::ANSIColor;
+use Getopt::Long;
 
 sub user {
     $u = `whoami`;
@@ -91,6 +92,16 @@ sub get_info {
     my $upt = uptime();
     my $pac = packages();
     my $usg = usage();
+
+    GetOptions (
+        "os=s" => \$os,
+        "kernel=s" => \$ke,
+        "wm=s" => \$wm,
+        "shell=s" => \$sh,
+        "uptime=s" => \$upt,
+        "packages=i" => \$pac,
+    );
+
 
     my $width = 25 - 12;
 
