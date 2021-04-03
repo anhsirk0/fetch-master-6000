@@ -54,8 +54,8 @@ output
 
 ### Available Options
 **-o** or **-os** for os  
-**-o** or **-kernel** for kernel  
-**-o** or **-wm** for wm  
-**-o** or **-shell** for shell  
-**-o** or **-uptime** for uptime  
-**-o** or **-package** for package  
+**-k** or **-kernel** for kernel  
+**-w** or **-wm** for wm  
+**-s** or **-shell** for shell  
+**-u** or **-uptime** for uptime  
+**-p** or **-package** for package  
