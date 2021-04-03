@@ -69,21 +69,6 @@ sub uptime {
     return $time;
 }
 
-sub usage {
-    my $data = `vnstat`;
-    unless($data) {
-        return 'empty'
-    }
-    my $today = 0;
-    foreach my $line (split '\n', $data) {
-        if ($line =~ /today/) {
-            $today = (split '\|', $line)[2];
-            $today =~ s/^ *//;
-        }
-    }
-    return $today;
-}
-
 sub get_info {
     my $os = get_os();
     my $ke = kernel();
@@ -91,7 +76,6 @@ sub get_info {
     my $sh = shell();
     my $upt = uptime();
     my $pac = packages();
-    my $usg = usage();
 
     GetOptions (
         "os=s" => \$os,
@@ -121,9 +105,6 @@ sub get_info {
 
     # format packages => "PACKAGE   314         "
     $pac = blue('PACKAGE' . ' ' x 3) . $pac . ' ' x ($width - length $pac);
-
-    # format vnstat => "VNSTAT   1.61 GiB         "
-    $usg = orange('VNSTAT' . ' ' x 4) . $usg . ' ' x ($width - length $usg);
 
     my $i = 0;
     $info[$i++] = ' ' x ($width + 10);
