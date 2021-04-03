@@ -51,3 +51,11 @@ fm6000 -p $(pacman -Q | wc -l)
 ```
 output
 ![out2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out2.png)
+
+### Available Options
+*-o* or *-os* for os 
+*-o* or *-kernel* for kernel 
+*-o* or *-wm* for wm 
+*-o* or *-shell* for shell 
+*-o* or *-uptime* for uptime 
+*-o* or *-package* for package 
