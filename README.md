@@ -44,15 +44,10 @@ fm6000 -o Manjaro -p 1729 -s zsh
 ```
 output
 
+![out1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out1.png)
 
-[33m              ╭─────────────────────────╮[0m
-[33m    დოოოოოდ   │  [0m                       [33m│[0m
-[33m    |     |   │  [0m[32mOS        [0mManjaro      [33m│[0m
-[33m    |     |  ╭│  [0m[34mKERNEL    [0m5.11.9       [33m│[0m
-[33m    |-ᱛ ᱛ-|  ││  [0m[33mWM        [0mawesome      [33m│[0m
-[33m   Ͼ   ∪   Ͽ ││  [0m[32mSHELL     [0mzsh          [33m│[0m
-[33m    |     |  ╯│  [0m[35mUPTIME    [0m4h, 39m      [33m│[0m
-[33m   ˏ`-.ŏ.-´ˎ  │  [0m[34mPACKAGE   [0m1729         [33m│[0m
-[33m       @      │  [0m                       [33m│[0m
-[33m        @     ╰─────────────────────────╯[0m
-
+```bash
+fm6000 -p $(pacman -Q | wc -l)
+```
+output
+![out2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out2.png)
