@@ -43,11 +43,11 @@ sub packages {
     # for arch based
     my $pacs = `pacman -Q`;
     # for debian based
-    unless($pacs){
+    unless($pacs) {
         $pacs = `dpkg-query`;
     }
     # for fedora
-    unless($pacs){
+    unless($pacs) {
         $pacs = `yum list installed`;
     }
     my $count = 0;
@@ -71,7 +71,7 @@ sub uptime {
 
 sub usage {
     my $data = `vnstat`;
-    unless($data){
+    unless($data) {
         return 'empty'
     }
     my $today = 0;
@@ -101,7 +101,6 @@ sub get_info {
         "uptime=s" => \$upt,
         "packages=i" => \$pac,
     );
-
 
     my $width = 25 - 12;
 
