@@ -44,7 +44,7 @@ sub packages {
     my $pacs = `pacman -Q`;
     # for debian based
     unless($pacs) {
-        $pacs = `dpkg-query`;
+        $pacs = `apt list --installed`;
     }
     # for fedora
     unless($pacs) {
