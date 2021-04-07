@@ -185,7 +185,7 @@ sub print_help {
     print "usage: fm6000 [options]\n\n";
     print "-o, --os=STR    OS name\n\n";
     print "-k or --kernel=STR    Kernel version\n\n";
-    print "-d or --de=STR    Window manager name\n\n";
+    print "-d or --de=STR    Desktop environment name\n\n";
     print "-s or --shell=STR    Shell name\n\n";
     print "-u or --uptime=STR    Uptime\n\n";
     print "-p or --package=INT    Number of packages\n\n";
