@@ -53,6 +53,7 @@ output
 ![out2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out2.png)
 
 ### Available Options
+**-h** or **--help** for help  
 **-o** or **--os** for os  
 **-k** or **--kernel** for kernel  
 **-d** or **--de** for desktop environment  
