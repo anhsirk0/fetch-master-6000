@@ -53,9 +53,9 @@ output
 ![out2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out2.png)
 
 ### Available Options
-**-o** or **-os** for os  
-**-k** or **-kernel** for kernel  
-**-w** or **-wm** for wm  
-**-s** or **-shell** for shell  
-**-u** or **-uptime** for uptime  
-**-p** or **-package** for package  
+**-o** or **--os** for os  
+**-k** or **--kernel** for kernel  
+**-d** or **--de** for desktop environment  
+**-s** or **--shell** for shell  
+**-u** or **--uptime** for uptime  
+**-p** or **--package** for package  
