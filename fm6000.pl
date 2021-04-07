@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+
 use Term::ANSIColor;
 use Getopt::Long;
 
@@ -24,7 +25,7 @@ sub get_os {
     return $os;
 }
 
-sub get_wm {
+sub get_de {
     return $ENV{XDG_SESSION_DESKTOP};
 }
 
@@ -72,19 +73,25 @@ sub uptime {
 sub get_info {
     my $os = get_os();
     my $ke = kernel();
-    my $wm = get_wm();
+    my $de = get_de();
     my $sh = shell();
     my $upt = uptime();
     my $pac = packages();
+    my $help;
 
     GetOptions (
+        "help" => \$help,
         "os=s" => \$os,
         "kernel=s" => \$ke,
-        "wm=s" => \$wm,
+        "de=s" => \$de,
         "shell=s" => \$sh,
         "uptime=s" => \$upt,
         "packages=i" => \$pac,
     );
+
+    if($help) {
+        print_help();
+    }
 
     my $width = 25 - 12;
 
@@ -94,8 +101,8 @@ sub get_info {
     # format kernel => "KERNEL        5.11.9        "
     $ke = blue('KERNEL' . ' ' x 4) . $ke . ' ' x ($width - length $ke);
 
-    # format wm => "WM        awesome        "
-    $wm = yellow('WM' . ' ' x 8) . $wm . ' ' x ($width - length $wm);
+    # format de => "DE        awesome        "
+    $de = yellow('DE' . ' ' x 8) . $de . ' ' x ($width - length $de);
 
     # format shell => "SHELL     fish        "
     $sh = green('SHELL' . ' ' x 5) . $sh . ' ' x ($width - length $sh);
@@ -110,7 +117,7 @@ sub get_info {
     $info[$i++] = ' ' x ($width + 10);
     $info[$i++] = $os;
     $info[$i++] = $ke;
-    $info[$i++] = $wm;
+    $info[$i++] = $de;
     $info[$i++] = $sh;
     $info[$i++] = $upt;
     $info[$i++] = $pac;
@@ -171,6 +178,18 @@ sub dilbert {
     $text .= "\n";
 
     print $text;
+}
+
+sub print_help {
+    print "usage: fm6000 [options]\n\n";
+    print "-o, --os=STR    OS name\n\n";
+    print "-k or --kernel=STR    Kernel version\n\n";
+    print "-d or --de=STR    Window manager name\n\n";
+    print "-s or --shell=STR    Shell name\n\n";
+    print "-u or --uptime=STR    Uptime\n\n";
+    print "-p or --package=INT    Number of packages\n\n";
+
+    exit;
 }
 
 dilbert();
