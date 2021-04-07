@@ -181,6 +181,7 @@ sub dilbert {
 }
 
 sub print_help {
+
     print "usage: fm6000 [options]\n\n";
     print "-o, --os=STR    OS name\n\n";
     print "-k or --kernel=STR    Kernel version\n\n";
