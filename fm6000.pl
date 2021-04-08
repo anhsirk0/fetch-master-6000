@@ -4,7 +4,7 @@ use Term::ANSIColor;
 use Getopt::Long;
 
 my $width = 25 - 12;
-my $gap = 10;
+my $gap = 3;
 my $margin = 2;
 my $color = 'yellow';
 
@@ -76,15 +76,10 @@ sub uptime {
 }
 
 sub format_info {
-    # format de => "DE        awesome        "
-    # format kernel => "KERNEL        5.11.9        "
-    # format os => "OS        EndeavourOS  "
-    # format packages => "PACKAGE   314         "
-    # format shell => "SHELL     fish        "
-    # format uptime => "UPTIME   17h, 29m      "
     my %info = %{(shift)};
+    # format => "MARGIN PLACEHOLDER GAP NAME "
     my $text = ' ' x $margin . colored($info{'placeholder'}, $info{'color'});
-    $text .= ' ' x ($gap - length $info{'placeholder'});
+    $text .= ' ' x (7 + $gap - length $info{'placeholder'});
     $text .= $info{'name'} . ' ' x ($width - length $info{'name'});
 
     return $text;
@@ -119,7 +114,7 @@ sub get_info {
 
     %os = (
         'placeholder' => 'OS',
-        'color' => 'green',
+        'color' => 'bright_green',
         'name' => $os,
     );
 
@@ -130,26 +125,26 @@ sub get_info {
     );
 
     %de = (
-        'placeholder' => 'OS',
-        'color' => 'yellow',
+        'placeholder' => 'DE',
+        'color' => 'bright_magenta',
         'name' => $de,
     );
 
     %sh = (
         'placeholder' => 'SHELL',
-        'color' => 'green',
+        'color' => 'yellow',
         'name' => $sh,
     );
 
     %up = (
         'placeholder' => 'UPTIME',
-        'color' => 'magenta',
+        'color' => 'bright_magenta',
         'name' => $up,
     );
 
     %pac = (
         'placeholder' => 'PACKAGE',
-        'color' => 'blue',
+        'color' => 'cyan',
         'name' => $pac,
     );
 
@@ -161,14 +156,14 @@ sub get_info {
     $pac = format_info(\%pac);
 
     my $i = 0;
-    $info[$i++] = ' ' x ($width + $gap + $margin);
+    $info[$i++] = ' ' x ($width + $gap + 7 + $margin);
     $info[$i++] = $os;
     $info[$i++] = $ke;
     $info[$i++] = $de;
     $info[$i++] = $sh;
     $info[$i++] = $up;
     $info[$i++] = $pac;
-    $info[$i++] = ' ' x ($width + $gap + $margin);
+    $info[$i++] = ' ' x ($width + $gap + 7 + $margin);
 
     return $info;
 }
@@ -177,7 +172,7 @@ sub dilbert {
     my $info = get_info();
 
     my $text = "\n";
-    $text .= colored('              ╭' . '─' x ($width + $margin + $gap) . '╮', $color) . "\n";
+    $text .= colored('              ╭' . '─' x ($width + $margin + $gap + 7) . '╮', $color) . "\n";
     $text .= colored('    დოოოოოდ   │', $color) . $info[0] . colored('│', $color) . "\n";
     $text .= colored('    |     |   │', $color) . $info[1] . colored('│', $color) . "\n";
     $text .= colored('    |     |  ╭│', $color) . $info[2] . colored('│', $color) . "\n";
@@ -186,7 +181,7 @@ sub dilbert {
     $text .= colored('    |     |  ╯│', $color) . $info[5] . colored('│', $color) . "\n";
     $text .= colored('   ˏ`-.ŏ.-´ˎ  │', $color) . $info[6] . colored('│', $color) . "\n";
     $text .= colored('       @      │', $color) . $info[7] . colored('│', $color) . "\n";
-    $text .= colored('        @     ╰' . '─' x ($width + $margin + $gap) . '╯', $color) . "\n";
+    $text .= colored('        @     ╰' . '─' x ($width + $margin + $gap + 7) . '╯', $color) . "\n";
     $text .= "\n";
 
     print $text;
@@ -195,12 +190,16 @@ sub dilbert {
 sub print_help {
 
     print "usage: fm6000 [options]\n\n";
+    print "-c, --color=STR    Base color\n\n";
     print "-o, --os=STR    OS name\n\n";
     print "-k or --kernel=STR    Kernel version\n\n";
     print "-d or --de=STR    Desktop environment name\n\n";
     print "-s or --shell=STR    Shell name\n\n";
     print "-u or --uptime=STR    Uptime\n\n";
     print "-p or --package=INT    Number of packages\n\n";
+    print "-m or --margin=INT    Spaces on the left side of info\n\n";
+    print "-g or --gap=INT    Spaces between info and info_value\n\n";
+    print "-w or --width=INT    Width of the board (should be greater than 14)\n\n";
 
     exit;
 }
