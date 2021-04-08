@@ -3,6 +3,11 @@
 use Term::ANSIColor;
 use Getopt::Long;
 
+my $width = 25 - 12;
+my $gap = 10;
+my $margin = 2;
+my $color = 'yellow';
+
 sub user {
     $u = `whoami`;
     chomp $u;
@@ -70,12 +75,27 @@ sub uptime {
     return $time;
 }
 
+sub format_info {
+    # format de => "DE        awesome        "
+    # format kernel => "KERNEL        5.11.9        "
+    # format os => "OS        EndeavourOS  "
+    # format packages => "PACKAGE   314         "
+    # format shell => "SHELL     fish        "
+    # format uptime => "UPTIME   17h, 29m      "
+    my %info = %{(shift)};
+    my $text = ' ' x $margin . colored($info{'placeholder'}, $info{'color'});
+    $text .= ' ' x ($gap - length $info{'placeholder'});
+    $text .= $info{'name'} . ' ' x ($width - length $info{'name'});
+
+    return $text;
+}
+
 sub get_info {
     my $os = get_os();
     my $ke = kernel();
     my $de = get_de();
     my $sh = shell();
-    my $upt = uptime();
+    my $up = uptime();
     my $pac = packages();
     my $help;
 
@@ -85,96 +105,88 @@ sub get_info {
         "kernel=s" => \$ke,
         "de=s" => \$de,
         "shell=s" => \$sh,
-        "uptime=s" => \$upt,
+        "uptime=s" => \$up,
         "packages=i" => \$pac,
+        "margin=i" => \$margin,
+        "width=i" => \$width,
+        "gap=i" => \$gap,
+        "color=s" => \$color,
     );
 
     if($help) {
         print_help();
     }
 
-    my $width = 25 - 12;
+    %os = (
+        'placeholder' => 'OS',
+        'color' => 'green',
+        'name' => $os,
+    );
 
-    # format os => "OS        EndeavourOS  "
-    $os = green('OS' . ' ' x 8) . $os . ' ' x ($width - length $os);
+    %ke = (
+        'placeholder' => 'KERNEL',
+        'color' => 'blue',
+        'name' => $ke,
+    );
 
-    # format kernel => "KERNEL        5.11.9        "
-    $ke = blue('KERNEL' . ' ' x 4) . $ke . ' ' x ($width - length $ke);
+    %de = (
+        'placeholder' => 'OS',
+        'color' => 'yellow',
+        'name' => $de,
+    );
 
-    # format de => "DE        awesome        "
-    $de = yellow('DE' . ' ' x 8) . $de . ' ' x ($width - length $de);
+    %sh = (
+        'placeholder' => 'SHELL',
+        'color' => 'green',
+        'name' => $sh,
+    );
 
-    # format shell => "SHELL     fish        "
-    $sh = green('SHELL' . ' ' x 5) . $sh . ' ' x ($width - length $sh);
+    %up = (
+        'placeholder' => 'UPTIME',
+        'color' => 'magenta',
+        'name' => $up,
+    );
 
-    # format uptime => "UPTIME   17h, 29m      "
-    $upt = magenta('UPTIME' . ' ' x 4) . $upt . ' ' x ($width - length $upt);
+    %pac = (
+        'placeholder' => 'PACKAGE',
+        'color' => 'blue',
+        'name' => $pac,
+    );
 
-    # format packages => "PACKAGE   314         "
-    $pac = blue('PACKAGE' . ' ' x 3) . $pac . ' ' x ($width - length $pac);
+    $os = format_info(\%os);
+    $ke = format_info(\%ke);
+    $de = format_info(\%de);
+    $sh = format_info(\%sh);
+    $up = format_info(\%up);
+    $pac = format_info(\%pac);
 
     my $i = 0;
-    $info[$i++] = ' ' x ($width + 10);
+    $info[$i++] = ' ' x ($width + $gap + $margin);
     $info[$i++] = $os;
     $info[$i++] = $ke;
     $info[$i++] = $de;
     $info[$i++] = $sh;
-    $info[$i++] = $upt;
+    $info[$i++] = $up;
     $info[$i++] = $pac;
-    $info[$i++] = ' ' x ($width + 10);
+    $info[$i++] = ' ' x ($width + $gap + $margin);
 
     return $info;
-}
-
-sub red {
-    my ($text) = @_;
-    return colored($text, 'red');
-}
-
-sub blue {
-    my ($text) = @_;
-    return colored($text, 'blue');
-}
-
-sub green {
-    my ($text) = @_;
-    return colored($text, 'green');
-}
-
-sub yellow {
-    my ($text) = @_;
-    return colored($text, 'yellow');
-}
-
-sub magenta {
-    my ($text) = @_;
-    return colored($text, 'magenta');
-}
-
-sub cyan {
-    my ($text) = @_;
-    return colored($text, 'cyan');
-}
-
-sub orange {
-    my ($text) = @_;
-    return colored($text, 'bold yellow');
 }
 
 sub dilbert {
     my $info = get_info();
 
     my $text = "\n";
-    $text .= yellow('              ╭─────────────────────────╮') . "\n";
-    $text .= yellow('    დოოოოოდ   │  ') . $info[0] . yellow('│') . "\n";
-    $text .= yellow('    |     |   │  ') . $info[1] . yellow('│') . "\n";
-    $text .= yellow('    |     |  ╭│  ') . $info[2] . yellow('│') . "\n";
-    $text .= yellow('    |-ᱛ ᱛ-|  ││  ') . $info[3] . yellow('│') . "\n";
-    $text .= yellow('   Ͼ   ∪   Ͽ ││  ') . $info[4] . yellow('│') . "\n";
-    $text .= yellow('    |     |  ╯│  ') . $info[5] . yellow('│') . "\n";
-    $text .= yellow('   ˏ`-.ŏ.-´ˎ  │  ') . $info[6] . yellow('│') . "\n";
-    $text .= yellow('       @      │  ') . $info[7] . yellow('│') . "\n";
-    $text .= yellow('        @     ╰─────────────────────────╯') . "\n";
+    $text .= colored('              ╭' . '─' x ($width + $margin + $gap) . '╮', $color) . "\n";
+    $text .= colored('    დოოოოოდ   │', $color) . $info[0] . colored('│', $color) . "\n";
+    $text .= colored('    |     |   │', $color) . $info[1] . colored('│', $color) . "\n";
+    $text .= colored('    |     |  ╭│', $color) . $info[2] . colored('│', $color) . "\n";
+    $text .= colored('    |-ᱛ ᱛ-|  ││', $color) . $info[3] . colored('│', $color) . "\n";
+    $text .= colored('   Ͼ   ∪   Ͽ ││', $color) . $info[4] . colored('│', $color) . "\n";
+    $text .= colored('    |     |  ╯│', $color) . $info[5] . colored('│', $color) . "\n";
+    $text .= colored('   ˏ`-.ŏ.-´ˎ  │', $color) . $info[6] . colored('│', $color) . "\n";
+    $text .= colored('       @      │', $color) . $info[7] . colored('│', $color) . "\n";
+    $text .= colored('        @     ╰' . '─' x ($width + $margin + $gap) . '╯', $color) . "\n";
     $text .= "\n";
 
     print $text;
