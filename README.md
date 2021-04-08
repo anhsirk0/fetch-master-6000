@@ -5,6 +5,7 @@ ASCII art for dilbert is taken from the Kakoune text editor
 
 ### Screenshots
 ![fm6000.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/fm6000.png)
+![all.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all.png)
 
 ### installation
 Its just a perl script
@@ -71,6 +72,7 @@ output
 **-s** or **--shell** for shell  
 **-u** or **--uptime** for uptime  
 **-p** or **--package** for package count  
+**-n** or **--not_de** to use 'WM' instead of 'DE'  
 
 **-m** or **--margin** Space on the left side of info   
 **-g** or **--gap** Spaces between info and info_value  
