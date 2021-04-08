@@ -36,7 +36,7 @@ bash fm6000
 
 ## Options
 if for some reason fm6000 is unable to detect packages or any other options,  
-you can specify these options from command line
+you can specify these options through commandline args  
 ### For example
 
 ```bash
@@ -74,5 +74,10 @@ output
 
 **-m** or **--margin** Space on the left side of info   
 **-g** or **--gap** Spaces between info and info_value  
-**-w** or **--width** Width of the board (should be greater than 14))
+**-w** or **--width** Width of the board (should be greater than 14)  
 
+### Available colors
+black  red  green  yellow  blue  magenta  cyan  white  
+
+bright_black  bright_red      bright_green  bright_yellow  
+bright_blue   bright_magenta  bright_cyan   bright_white  
