@@ -133,7 +133,7 @@ sub get_info {
 
     %de = (
         'placeholder' => $de_placeholder,
-        'color' => 'bright_magenta',
+        'color' => 'bright_red',
         'name' => $de,
     );
 
