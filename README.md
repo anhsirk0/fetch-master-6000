@@ -52,11 +52,27 @@ fm6000 -p $(pacman -Q | wc -l)
 output
 ![out2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out2.png)
 
+### Colors
+![color1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/color1.png)
+
+![color2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/color2.png)
+
+### Geomtry
+![geometry.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/geometry.png)
+
+
 ### Available Options
 **-h** or **--help** for help  
+**-c** or **--color** for base color  
+
 **-o** or **--os** for os  
 **-k** or **--kernel** for kernel  
 **-d** or **--de** for desktop environment  
 **-s** or **--shell** for shell  
 **-u** or **--uptime** for uptime  
-**-p** or **--package** for package  
+**-p** or **--package** for package count  
+
+**-m** or **--margin** Space on the left side of info   
+**-g** or **--gap** Spaces between info and info_value  
+**-w** or **--width** Width of the board (should be greater than 14))
+
