@@ -92,6 +92,8 @@ sub get_info {
     my $sh = shell();
     my $up = uptime();
     my $pac = packages();
+    my $de_placeholder = 'DE';
+    my $not_de;
     my $help;
 
     GetOptions (
@@ -106,10 +108,15 @@ sub get_info {
         "width=i" => \$width,
         "gap=i" => \$gap,
         "color=s" => \$color,
+        "not_de" => \$not_de,
     );
 
     if($help) {
         print_help();
+    }
+
+    if($not_de) {
+        $de_placeholder = 'WM';
     }
 
     %os = (
@@ -125,7 +132,7 @@ sub get_info {
     );
 
     %de = (
-        'placeholder' => 'DE',
+        'placeholder' => $de_placeholder,
         'color' => 'bright_magenta',
         'name' => $de,
     );
@@ -191,6 +198,7 @@ sub print_help {
 
     print "usage: fm6000 [options]\n\n";
     print "-c, --color=STR    Base color\n\n";
+    print "-n, --not_de    To use 'WM' instead of 'DE'\n\n";
     print "-o, --os=STR    OS name\n\n";
     print "-k or --kernel=STR    Kernel version\n\n";
     print "-d or --de=STR    Desktop environment name\n\n";
