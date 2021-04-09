@@ -3,10 +3,11 @@
 use Term::ANSIColor;
 use Getopt::Long;
 
-my $width = 25 - 12;
+my $length = 25 - 12;
 my $gap = 3;
 my $margin = 2;
 my $color = 'yellow';
+my $wally;
 
 sub user {
     $u = `whoami`;
@@ -80,7 +81,7 @@ sub format_info {
     # format => "MARGIN PLACEHOLDER GAP NAME "
     my $text = ' ' x $margin . colored($info{'placeholder'}, $info{'color'});
     $text .= ' ' x (7 + $gap - length $info{'placeholder'});
-    $text .= $info{'name'} . ' ' x ($width - length $info{'name'});
+    $text .= $info{'name'} . ' ' x ($length - length $info{'name'});
 
     return $text;
 }
@@ -105,10 +106,11 @@ sub get_info {
         "uptime=s" => \$up,
         "packages=i" => \$pac,
         "margin=i" => \$margin,
-        "width=i" => \$width,
+        "length=i" => \$length,
         "gap=i" => \$gap,
         "color=s" => \$color,
         "not_de" => \$not_de,
+        "wally" => \$wally,
     );
 
     if($help) {
@@ -163,32 +165,47 @@ sub get_info {
     $pac = format_info(\%pac);
 
     my $i = 0;
-    $info[$i++] = ' ' x ($width + $gap + 7 + $margin);
+    $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
     $info[$i++] = $os;
     $info[$i++] = $ke;
     $info[$i++] = $de;
     $info[$i++] = $sh;
     $info[$i++] = $up;
     $info[$i++] = $pac;
-    $info[$i++] = ' ' x ($width + $gap + 7 + $margin);
+    $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
 
     return $info;
 }
 
-sub dilbert {
+sub draw {
     my $info = get_info();
 
     my $text = "\n";
-    $text .= colored('              ╭' . '─' x ($width + $margin + $gap + 7) . '╮', $color) . "\n";
-    $text .= colored('    დოოოოოდ   │', $color) . $info[0] . colored('│', $color) . "\n";
-    $text .= colored('    |     |   │', $color) . $info[1] . colored('│', $color) . "\n";
-    $text .= colored('    |     |  ╭│', $color) . $info[2] . colored('│', $color) . "\n";
-    $text .= colored('    |-ᱛ ᱛ-|  ││', $color) . $info[3] . colored('│', $color) . "\n";
-    $text .= colored('   Ͼ   ∪   Ͽ ││', $color) . $info[4] . colored('│', $color) . "\n";
-    $text .= colored('    |     |  ╯│', $color) . $info[5] . colored('│', $color) . "\n";
-    $text .= colored('   ˏ`-.ŏ.-´ˎ  │', $color) . $info[6] . colored('│', $color) . "\n";
-    $text .= colored('       @      │', $color) . $info[7] . colored('│', $color) . "\n";
-    $text .= colored('        @     ╰' . '─' x ($width + $margin + $gap + 7) . '╯', $color) . "\n";
+
+    if($wally) {
+        $text .= colored('                 ╭' . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
+        $text .= colored("     .-'''-.     │", $color) . $info[0] . colored('│', $color) . "\n";
+        $text .= colored('    |       |    │', $color) . $info[1] . colored('│', $color) . "\n";
+        $text .= colored('   ⪜|---_---|⪛  ╭│', $color) . $info[2] . colored('│', $color) . "\n";
+        $text .= colored('   Ͼ|__(_)__|Ͽ  ││', $color) . $info[3] . colored('│', $color) . "\n";
+        $text .= colored('    |   _   |   ││', $color) . $info[4] . colored('│', $color) . "\n";
+        $text .= colored('    |       |   ╯│', $color) . $info[5] . colored('│', $color) . "\n";
+        $text .= colored('   ˏ====○====ˎ   │', $color) . $info[6] . colored('│', $color) . "\n";
+        $text .= colored('       / \       │', $color) . $info[7] . colored('│', $color) . "\n";
+        $text .= colored('                 ╰' . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
+    } else {
+        $text .= colored('              ╭' . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
+        $text .= colored('    დოოოოოდ   │', $color) . $info[0] . colored('│', $color) . "\n";
+        $text .= colored('    |     |   │', $color) . $info[1] . colored('│', $color) . "\n";
+        $text .= colored('    |     |  ╭│', $color) . $info[2] . colored('│', $color) . "\n";
+        $text .= colored('    |-ᱛ ᱛ-|  ││', $color) . $info[3] . colored('│', $color) . "\n";
+        $text .= colored('   Ͼ   ∪   Ͽ ││', $color) . $info[4] . colored('│', $color) . "\n";
+        $text .= colored('    |     |  ╯│', $color) . $info[5] . colored('│', $color) . "\n";
+        $text .= colored('   ˏ`-.ŏ.-´ˎ  │', $color) . $info[6] . colored('│', $color) . "\n";
+        $text .= colored('       @      │', $color) . $info[7] . colored('│', $color) . "\n";
+        $text .= colored('        @     ╰' . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
+    }
+
     $text .= "\n";
 
     print $text;
@@ -207,10 +224,10 @@ sub print_help {
     print "-p or --package=INT    Number of packages\n\n";
     print "-m or --margin=INT    Spaces on the left side of info\n\n";
     print "-g or --gap=INT    Spaces between info and info_value\n\n";
-    print "-w or --width=INT    Width of the board (should be greater than 14)\n\n";
+    print "-l or --length=INT    Length of the board (should be greater than 14)\n\n";
 
     exit;
 }
 
-dilbert();
+draw();
 
