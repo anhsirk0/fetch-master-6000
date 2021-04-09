@@ -33,6 +33,10 @@ runing the script
 ```
 or
 ```bash
+perl fm6000
+```
+or
+```bash
 bash fm6000
 ```
 
