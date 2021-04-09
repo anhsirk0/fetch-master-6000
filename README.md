@@ -63,7 +63,7 @@ output
 
 ![color2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/color2.png)
 
-### Geomtry
+### Geometry
 ![geometry.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/geometry.png)
 
 
