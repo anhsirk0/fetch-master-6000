@@ -66,7 +66,7 @@ output
 ### Available Options
 **-h** or **--help** for help  
 **-c** or **--color** for base color  
-**-w** or **--wally** display wally
+**-w** or **--wally** display Wally  
 
 **-o** or **--os** for os  
 **-k** or **--kernel** for kernel  
