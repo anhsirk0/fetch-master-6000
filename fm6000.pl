@@ -215,6 +215,7 @@ sub print_help {
 
     print "usage: fm6000 [options]\n\n";
     print "-c, --color=STR    Base color\n\n";
+    print "-w, --wally    Display Wally \n\n";
     print "-n, --not_de    To use 'WM' instead of 'DE'\n\n";
     print "-o, --os=STR    OS name\n\n";
     print "-k or --kernel=STR    Kernel version\n\n";
