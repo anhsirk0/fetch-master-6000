@@ -6,6 +6,7 @@ ASCII art for dilbert is taken from the Kakoune text editor
 ### Screenshots
 ![fm6000.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/fm6000.png)
 ![all.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all.png)
+![wally.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wally.png)
 
 ### installation
 Its just a perl script
@@ -65,6 +66,7 @@ output
 ### Available Options
 **-h** or **--help** for help  
 **-c** or **--color** for base color  
+**-w** or **--wally** display wally
 
 **-o** or **--os** for os  
 **-k** or **--kernel** for kernel  
@@ -76,7 +78,7 @@ output
 
 **-m** or **--margin** Space on the left side of info   
 **-g** or **--gap** Spaces between info and info_value  
-**-w** or **--width** Width of the board (should be greater than 14)  
+**-l** or **--length** Length of the board (should be greater than 14)  
 
 ### Available colors
 black  red  green  yellow  blue  magenta  cyan  white  
