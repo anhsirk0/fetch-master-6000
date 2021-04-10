@@ -177,7 +177,7 @@ sub get_info {
     return $info;
 }
 
-sub draw {
+sub main {
     my $info = get_info();
 
     my $text = "\n";
@@ -230,5 +230,5 @@ sub print_help {
     exit;
 }
 
-draw();
+main();
 
