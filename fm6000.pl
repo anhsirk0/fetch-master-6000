@@ -177,7 +177,6 @@ sub get_info {
 
 sub main {
     my $info = get_info();
-
     my $text = "\n";
 
     if($wally) {
@@ -205,12 +204,10 @@ sub main {
     }
 
     $text .= "\n";
-
     print $text;
 }
 
 sub print_help {
-
     print "usage: fm6000 [options]\n\n";
     print "-c, --color=STR    Base color\n\n";
     print "-w, --wally    Display Wally \n\n";
@@ -224,6 +221,9 @@ sub print_help {
     print "-m or --margin=INT    Spaces on the left side of info\n\n";
     print "-g or --gap=INT    Spaces between info and info_value\n\n";
     print "-l or --length=INT    Length of the board ( > 14)\n\n";
+    print "available colors: \n";
+    print join(", ", splice(@colors, 0, 7)) . ", random" . "\n";
+    print join(", ", @colors) . "\n\n";
 
     exit;
 }
