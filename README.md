@@ -90,28 +90,3 @@ black  red  green  yellow  blue  magenta  cyan  white
 bright_black  bright_red      bright_green  bright_yellow  
 bright_blue   bright_magenta  bright_cyan   bright_white  
 
-## ASCII Arts
-
-              ╭───────────────────────╮
-    დოოოოოდ   │                       │
-    |     |   │                       │
-    |     |  ╭│                       │
-    |-ᱛ ᱛ-|  ││                       │
-   Ͼ   ∪   Ͽ ││                       │
-    |     |  ╯│                       │
-   ˏ`-.ŏ.-´ˎ  │                       │
-       @      │                       │
-        @     │                       │
-              ╰───────────────────────╯
-
-                ╭───────────────────────╮
-     .-'''-.    │                       │
-    |       |   │                       │
-   ⪜|---_---|⪛ ╭│                       │
-   Ͼ|__(_)__|Ͽ ││                       │
-    |   _   |  ││                       │
-    |       |  ╯│                       │
-   ˏ====○====ˎ  │                       │
-       / \      │                       │
-                │                       │
-                ╰───────────────────────╯
