@@ -9,17 +9,11 @@ my $margin = 2;
 my $color = 'yellow';
 my $wally;
 
-sub user {
-    $u = `whoami`;
-    chomp $u;
-    return $u;
-}
-
-sub host {
-    $h = `hostname`;
-    chomp $h;
-    return $h;
-}
+my @colors = (
+    'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
+    'bright_red', 'bright_green', 'bright_yellow',
+    'bright_blue', 'bright_magenta', 'bright_cyan', 'bright_white'
+);
 
 sub get_os {
     my $os = `lsb_release -sd`;
@@ -119,6 +113,10 @@ sub get_info {
 
     if($not_de) {
         $de_placeholder = 'WM';
+    }
+
+    if($color eq "random") {
+        $color = @colors[int(rand scalar @colors)];
     }
 
     %os = (
@@ -225,7 +223,7 @@ sub print_help {
     print "-p or --package=INT    Number of packages\n\n";
     print "-m or --margin=INT    Spaces on the left side of info\n\n";
     print "-g or --gap=INT    Spaces between info and info_value\n\n";
-    print "-l or --length=INT    Length of the board (should be greater than 14)\n\n";
+    print "-l or --length=INT    Length of the board ( > 14)\n\n";
 
     exit;
 }
