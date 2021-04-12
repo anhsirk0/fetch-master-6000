@@ -234,22 +234,22 @@ sub main {
 
 sub print_help {
     print "usage: fm6000 [options]\n\n";
-    print "-c, --color=STR    Base color\n\n";
-    print "-w, --wally    Display Wally \n\n";
-    print "-n, --not_de    To use 'WM' instead of 'DE'\n\n";
-    print "-o, --os=STR    OS name\n\n";
-    print "-k or --kernel=STR    Kernel version\n\n";
-    print "-d or --de=STR    Desktop environment name\n\n";
-    print "-s or --shell=STR    Shell name\n\n";
-    print "-u or --uptime=STR    Uptime\n\n";
-    print "-p or --package=INT    Number of packages\n\n";
-    print "-v or --vnstat=STR    Use vnstat instead of kernel (optional)\n\n";
-    print "-m or --margin=INT    Spaces on the left side of info\n\n";
-    print "-g or --gap=INT    Spaces between info and info_value\n\n";
+    print "-c, --color=STR    Base color\n";
+    print "-w, --wally    Display Wally \n";
+    print "-n, --not_de    To use 'WM' instead of 'DE'\n";
+    print "-o, --os=STR    OS name\n";
+    print "-k or --kernel=STR    Kernel version\n";
+    print "-d or --de=STR    Desktop environment name\n";
+    print "-s or --shell=STR    Shell name\n";
+    print "-u or --uptime=STR    Uptime\n";
+    print "-p or --package=INT    Number of packages\n";
+    print "-v or --vnstat=STR    Use vnstat instead of kernel (optional)\n";
+    print "-m or --margin=INT    Spaces on the left side of info\n";
+    print "-g or --gap=INT    Spaces between info and info_value\n";
     print "-l or --length=INT    Length of the board ( > 14)\n\n";
     print "available colors: \n";
     print join(", ", splice(@colors, 0, 7)) . ", random" . "\n";
-    print join(", ", @colors) . "\n\n";
+    print join(", ", @colors) . "\n";
 
     exit;
 }
