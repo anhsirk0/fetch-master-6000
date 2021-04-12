@@ -52,7 +52,7 @@ sub packages {
         $pacs = `yum list installed`;
     }
     my $count = 0;
-    foreach my $p (split '\n', $pacs) {
+    foreach(split '\n', $pacs) {
         $count++;
     }
     return $count;
@@ -68,6 +68,17 @@ sub uptime {
         chomp;
     }
     return $time;
+}
+
+sub usage {
+    my $data = `vnstat`;
+    foreach my $line (split '\n', $data) {
+        if ($line =~ /today/) {
+            $today = (split '\|', $line)[2];
+            $today =~ s/^ *//;
+        }
+    }
+    return $today;
 }
 
 sub format_info {
@@ -89,6 +100,7 @@ sub get_info {
     my $pac = packages();
     my $de_placeholder = 'DE';
     my $not_de;
+    my $vnstat = '-1';
     my $help;
 
     GetOptions (
@@ -104,6 +116,7 @@ sub get_info {
         "gap=i" => \$gap,
         "color=s" => \$color,
         "not_de" => \$not_de,
+        "vnstat:s" => \$vnstat,
         "wally" => \$wally,
     );
 
@@ -115,9 +128,19 @@ sub get_info {
         $de_placeholder = 'WM';
     }
 
+    if($vnstat eq '') {
+        $vnstat = usage();
+    }
+
     if($color eq "random") {
         $color = @colors[int(rand scalar @colors)];
     }
+
+    %usg = (
+        'placeholder' => 'VNSTAT',
+        'color' => 'magenta',
+        'name' => $vnstat
+    );
 
     %os = (
         'placeholder' => 'OS',
@@ -161,15 +184,17 @@ sub get_info {
     $sh = format_info(\%sh);
     $up = format_info(\%up);
     $pac = format_info(\%pac);
+    $usg = format_info(\%usg);
 
     my $i = 0;
     $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
     $info[$i++] = $os;
-    $info[$i++] = $ke;
+    if($vnstat eq '-1' ) { $info[$i++] = $ke; }
     $info[$i++] = $de;
     $info[$i++] = $sh;
     $info[$i++] = $up;
     $info[$i++] = $pac;
+    unless($vnstat eq '-1' ) { $info[$i++] = $usg; }
     $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
 
     return $info;
@@ -218,6 +243,7 @@ sub print_help {
     print "-s or --shell=STR    Shell name\n\n";
     print "-u or --uptime=STR    Uptime\n\n";
     print "-p or --package=INT    Number of packages\n\n";
+    print "-v or --vnstat=STR    Use vnstat instead of kernel (optional)\n\n";
     print "-m or --margin=INT    Spaces on the left side of info\n\n";
     print "-g or --gap=INT    Spaces between info and info_value\n\n";
     print "-l or --length=INT    Length of the board ( > 14)\n\n";
