@@ -79,6 +79,7 @@ output
 **-u** or **--uptime** for uptime  
 **-p** or **--package** for package count  
 **-n** or **--not_de** to use 'WM' instead of 'DE'  
+**-v** or **--vnstat** to use vnstat instead of kernel  
 
 **-m** or **--margin** Space on the left side of info   
 **-g** or **--gap** Spaces between info and info_value  
