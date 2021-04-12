@@ -243,7 +243,7 @@ sub print_help {
     print "-s or --shell=STR    Shell name\n";
     print "-u or --uptime=STR    Uptime\n";
     print "-p or --package=INT    Number of packages\n";
-    print "-v or --vnstat=STR    Use vnstat instead of kernel (optional)\n";
+    print "-v or --vnstat=STR    Use vnstat instead of kernel\n";
     print "-m or --margin=INT    Spaces on the left side of info\n";
     print "-g or --gap=INT    Spaces between info and info_value\n";
     print "-l or --length=INT    Length of the board ( > 14)\n\n";
