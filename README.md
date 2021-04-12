@@ -4,8 +4,8 @@
 ASCII art for dilbert is taken from the Kakoune text editor
 
 ### Screenshots
-![fm6000.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/fm6000.png)
-![all.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all.png)
+![all1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all1.png)
+![al2l.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all2.png)
 ![wally.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wally.png)
 
 ### installation
