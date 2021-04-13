@@ -7,6 +7,7 @@ ASCII art for dilbert is taken from the Kakoune text editor
 ![all1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all1.png)
 ![al2l.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all2.png)
 ![wally.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wally.png)
+![dogbertkk.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/dogbert.png)
 
 ### installation
 Its just a perl script
@@ -71,10 +72,11 @@ output
 **-h** or **--help** for help  
 **-c** or **--color** for base color  
 **-w** or **--wally** display Wally  
+**-dog** or **--dogbert** display Dogbert  
 
 **-o** or **--os** for os  
 **-k** or **--kernel** for kernel  
-**-d** or **--de** for desktop environment  
+**-de** or **--de** for desktop environment  
 **-s** or **--shell** for shell  
 **-u** or **--uptime** for uptime  
 **-p** or **--package** for package count  
