@@ -1,9 +1,12 @@
 #!/usr/bin/perl
 
+# Dilbert themed system info fetch tool
+# https://github.com/anhsirk0/fetch-master-6000
+
 use Term::ANSIColor;
 use Getopt::Long;
 
-my $length = 25 - 12;
+my $length = 13;
 my $gap = 3;
 my $margin = 2;
 my $color = 'yellow';
@@ -69,6 +72,7 @@ sub uptime {
     return $time;
 }
 
+# today's internet usage via vnstat
 sub usage {
     my $data = `vnstat`;
     foreach my $line (split '\n', $data) {
@@ -82,11 +86,10 @@ sub usage {
 
 sub format_info {
     my %info = %{(shift)};
-    # format => "MARGIN PLACEHOLDER GAP NAME "
+    # format => "MARGIN PLACEHOLDER GAP NAME"
     my $text = ' ' x $margin . colored($info{'placeholder'}, $info{'color'});
     $text .= ' ' x (7 + $gap - length $info{'placeholder'});
     $text .= $info{'name'} . ' ' x ($length - length $info{'name'});
-
     return $text;
 }
 
@@ -98,9 +101,7 @@ sub get_info {
     my $up = uptime();
     my $pac = packages();
     my $de_placeholder = 'DE';
-    my $not_de;
     my $vnstat = '-1';
-    my $help;
 
     GetOptions (
         "help" => \$help,
@@ -122,6 +123,7 @@ sub get_info {
 
     if($help) {
         print_help();
+        exit;
     }
 
     if($not_de) {
@@ -262,8 +264,6 @@ sub print_help {
     print "available colors: \n";
     print join(", ", splice(@colors, 0, 7)) . ", random" . "\n";
     print join(", ", @colors) . "\n";
-
-    exit;
 }
 
 main();
