@@ -7,7 +7,6 @@ my $length = 25 - 12;
 my $gap = 3;
 my $margin = 2;
 my $color = 'yellow';
-my $wally;
 
 my @colors = (
     'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
@@ -118,6 +117,7 @@ sub get_info {
         "not_de" => \$not_de,
         "vnstat:s" => \$vnstat,
         "wally" => \$wally,
+        "dogbert" => \$dogbert,
     );
 
     if($help) {
@@ -205,27 +205,38 @@ sub main {
     my $text = "\n";
 
     if($wally) {
-        $text .= colored('                 ╭' . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
-        $text .= colored("     .-'''-.     │", $color) . $info[0] . colored('│', $color) . "\n";
-        $text .= colored('    |       |    │', $color) . $info[1] . colored('│', $color) . "\n";
-        $text .= colored('   ⪜|---_---|⪛  ╭│', $color) . $info[2] . colored('│', $color) . "\n";
-        $text .= colored('   Ͼ|__(_)__|Ͽ  ││', $color) . $info[3] . colored('│', $color) . "\n";
-        $text .= colored('    |   _   |   ││', $color) . $info[4] . colored('│', $color) . "\n";
-        $text .= colored('    |       |   ╯│', $color) . $info[5] . colored('│', $color) . "\n";
-        $text .= colored('   ˏ====○====ˎ   │', $color) . $info[6] . colored('│', $color) . "\n";
-        $text .= colored('       / \       │', $color) . $info[7] . colored('│', $color) . "\n";
-        $text .= colored('                 ╰' . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
+        $text .= colored(q{                 ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
+        $text .= colored(q{     .-'''-.     │}, $color) . $info[0] . colored('│', $color) . "\n";
+        $text .= colored(q{    |       |    │}, $color) . $info[1] . colored('│', $color) . "\n";
+        $text .= colored(q{   ⪜|---_---|⪛  ╭│}, $color) . $info[2] . colored('│', $color) . "\n";
+        $text .= colored(q{   Ͼ|__(_)__|Ͽ  ││}, $color) . $info[3] . colored('│', $color) . "\n";
+        $text .= colored(q{    |   _   |   ││}, $color) . $info[4] . colored('│', $color) . "\n";
+        $text .= colored(q{    |       |   ╯│}, $color) . $info[5] . colored('│', $color) . "\n";
+        $text .= colored(q{   ˏ====○====ˎ   │}, $color) . $info[6] . colored('│', $color) . "\n";
+        $text .= colored(q{       / \       │}, $color) . $info[7] . colored('│', $color) . "\n";
+        $text .= colored(q{                 ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
+    } elsif ($dogbert) {
+        $text .= colored(q{                ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
+        $text .= colored(q{                │}, $color) . $info[0] . colored('│', $color) . "\n";
+        $text .= colored(q{    .-----.     │}, $color) . $info[1] . colored('│', $color) . "\n";
+        $text .= colored(q{  .`       `.  ╭│}, $color) . $info[2] . colored('│', $color) . "\n";
+        $text .= colored(q{ / /-() ()-\ \ ││}, $color) . $info[3] . colored('│', $color) . "\n";
+        $text .= colored(q{ \_|   ○   |_/ ││}, $color) . $info[4] . colored('│', $color) . "\n";
+        $text .= colored(q{  '.       .'  ╯│}, $color) . $info[5] . colored('│', $color) . "\n";
+        $text .= colored(q{    `-._.-'     │}, $color) . $info[6] . colored('│', $color) . "\n";
+        $text .= colored(q{                │}, $color) . $info[7] . colored('│', $color) . "\n";
+        $text .= colored(q{                ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
     } else {
-        $text .= colored('              ╭' . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
-        $text .= colored('    დოოოოოდ   │', $color) . $info[0] . colored('│', $color) . "\n";
-        $text .= colored('    |     |   │', $color) . $info[1] . colored('│', $color) . "\n";
-        $text .= colored('    |     |  ╭│', $color) . $info[2] . colored('│', $color) . "\n";
-        $text .= colored('    |-ᱛ ᱛ-|  ││', $color) . $info[3] . colored('│', $color) . "\n";
-        $text .= colored('   Ͼ   ∪   Ͽ ││', $color) . $info[4] . colored('│', $color) . "\n";
-        $text .= colored('    |     |  ╯│', $color) . $info[5] . colored('│', $color) . "\n";
-        $text .= colored('   ˏ`-.ŏ.-´ˎ  │', $color) . $info[6] . colored('│', $color) . "\n";
-        $text .= colored('       @      │', $color) . $info[7] . colored('│', $color) . "\n";
-        $text .= colored('        @     ╰' . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
+        $text .= colored(q{              ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
+        $text .= colored(q{    დოოოოოდ   │}, $color) . $info[0] . colored('│', $color) . "\n";
+        $text .= colored(q{    |     |   │}, $color) . $info[1] . colored('│', $color) . "\n";
+        $text .= colored(q{    |     |  ╭│}, $color) . $info[2] . colored('│', $color) . "\n";
+        $text .= colored(q{    |-ᱛ ᱛ-|  ││}, $color) . $info[3] . colored('│', $color) . "\n";
+        $text .= colored(q{   Ͼ   ∪   Ͽ ││}, $color) . $info[4] . colored('│', $color) . "\n";
+        $text .= colored(q{    |     |  ╯│}, $color) . $info[5] . colored('│', $color) . "\n";
+        $text .= colored(q{   ˏ`-.ŏ.-´ˎ  │}, $color) . $info[6] . colored('│', $color) . "\n";
+        $text .= colored(q{       @      │}, $color) . $info[7] . colored('│', $color) . "\n";
+        $text .= colored(q{        @     ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
     }
 
     $text .= "\n";
@@ -236,10 +247,11 @@ sub print_help {
     print "usage: fm6000 [options]\n\n";
     print "-c, --color=STR    Base color\n";
     print "-w, --wally    Display Wally \n";
+    print "-dog, --dogbert    Display Dogbert \n";
     print "-n, --not_de    To use 'WM' instead of 'DE'\n";
     print "-o, --os=STR    OS name\n";
     print "-k or --kernel=STR    Kernel version\n";
-    print "-d or --de=STR    Desktop environment name\n";
+    print "-de or --de=STR    Desktop environment name\n";
     print "-s or --shell=STR    Shell name\n";
     print "-u or --uptime=STR    Uptime\n";
     print "-p or --package=INT    Number of packages\n";
