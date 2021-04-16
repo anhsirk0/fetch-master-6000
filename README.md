@@ -93,3 +93,25 @@ black  red  green  yellow  blue  magenta  cyan  white
 bright_black  bright_red      bright_green  bright_yellow  
 bright_blue   bright_magenta  bright_cyan   bright_white  
 
+### Troubleshooting
+If your distro is not {arch, debian, fedora, freeBSD} based fetch-master-6000 wont be able to detect number of packages
+In that case you have to specify number of packages yourself
+For example:
+On Solus (eopkg)
+command to list all istalled packages is:
+```bash
+eopkg list-installed
+```
+to count packages pipe the list to wc -l
+
+```bash
+eopkg list-installed | wc -l
+```
+
+make it an alias to avoid typing it everytime
+
+```bash
+alias fm6000='fm6000 -p $(eopkg list-installed | wc -l)'
+```
+Similiarly for other distros
+
