@@ -55,11 +55,8 @@ sub packages {
     unless($pacs) { $pacs = `yum list installed`; }
     # for BSD
     unless($pacs) { $pacs = `pkg info`; }
-    
-    my $count = 0;
-    foreach(split '\n', $pacs) {
-        $count++;
-    }
+
+    my $count = $pacs =~ tr/\n//;
     return $count;
 }
 
