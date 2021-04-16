@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 # Dilbert themed system info fetch tool
 # https://github.com/anhsirk0/fetch-master-6000
@@ -19,6 +19,8 @@ my @colors = (
 
 sub get_os {
     my $os = `lsb_release -sd`;
+    # for BSD
+    unless($os) { $os = `uname -s`; }
     for($os){
         s/"//;
         s/ .*//;
@@ -28,7 +30,9 @@ sub get_os {
 }
 
 sub get_de {
-    return $ENV{XDG_SESSION_DESKTOP};
+    my $de = $ENV{XDG_CURRENT_DESKTOP};
+    unless($de) { $de = $ENV{XDG_SESSION_DESKTOP} };
+    return $de;
 }
 
 sub shell {
@@ -46,13 +50,12 @@ sub packages {
     # for arch based
     my $pacs = `pacman -Q`;
     # for debian based
-    unless($pacs) {
-        $pacs = `apt list --installed`;
-    }
+    unless($pacs) { $pacs = `apt list --installed`; }
     # for fedora
-    unless($pacs) {
-        $pacs = `yum list installed`;
-    }
+    unless($pacs) { $pacs = `yum list installed`; }
+    # for BSD
+    unless($pacs) { $pacs = `pkg info`; }
+    
     my $count = 0;
     foreach(split '\n', $pacs) {
         $count++;
@@ -61,13 +64,20 @@ sub packages {
 }
 
 sub uptime {
-    my $time = `uptime -p`;
+    my $time = `uptime`;
     for($time) {
-        s/up //;
-        s/.day./d/;
-        s/.hour./h/;
-        s/.minute./m/;
-        chomp;
+        s/.*up\s+//;
+        s/,.*//;
+        chomp
+    }
+
+    my @time = reverse(split ":", $time);
+    if(scalar @time == 2) {
+        $time = $time[1]. "h, " . $time[0] . "m";
+    } elsif(scalar @time == 3) {
+        $time = $time[2]. "d, " . $time[1]. "h, " . $time[0] . "m";    
+    } else {
+        $time =~ s/ minutes/m/;
     }
     return $time;
 }
