@@ -11,7 +11,7 @@ ASCII art for dilbert is taken from the Kakoune text editor
 
 ### installation
 Its just a perl script
-download it make it executable and put in your path folder
+download it make it executable and put somewhere in your $PATH
 
 with wget
 ``` bash
