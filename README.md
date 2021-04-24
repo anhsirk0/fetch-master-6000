@@ -1,13 +1,15 @@
 # Fetch-master 6000
 
 ## Simple fecthing tool  
-ASCII art for dilbert is taken from the Kakoune text editor
+ASCII art of dilbert is taken from the Kakoune text editor https://github.com/mawww/kakoune  
+ASCII art of alice is taken from Christopher Johnson collection: https://asciiart.website/index.php?art=comics/dilbert     
 
 ### Screenshots
 ![all1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all1.png)
 ![al2l.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all2.png)
 ![wally.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wally.png)
-![dogbertkk.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/dogbert.png)
+![dogbert.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/dogbert.png)
+![alice.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/alice.png)
 
 ### installation
 Its just a perl script
