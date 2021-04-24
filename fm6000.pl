@@ -2,7 +2,7 @@
 
 # Dilbert themed system info fetch tool
 # https://github.com/anhsirk0/fetch-master-6000
-
+use strict;
 use Term::ANSIColor;
 use Getopt::Long;
 
@@ -10,6 +10,11 @@ my $length = 13;
 my $gap = 3;
 my $margin = 2;
 my $color = 'yellow';
+
+my $wally;
+my $dogbert;
+my $help;
+my $not_de;
 
 my @colors = (
     'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
@@ -82,6 +87,7 @@ sub uptime {
 # today's internet usage via vnstat
 sub usage {
     my $data = `vnstat`;
+    my $today;
     foreach my $line (split '\n', $data) {
         if ($line =~ /today/) {
             $today = (split '\|', $line)[2];
@@ -109,6 +115,7 @@ sub get_info {
     my $pac = packages();
     my $de_placeholder = 'DE';
     my $vnstat = '-1';
+    my $usg;
 
     GetOptions (
         "help" => \$help,
@@ -145,43 +152,43 @@ sub get_info {
         $color = @colors[int(rand scalar @colors)];
     }
 
-    %usg = (
+    my %usg = (
         'placeholder' => 'VNSTAT',
         'color' => 'magenta',
         'name' => $vnstat
     );
 
-    %os = (
+    my %os = (
         'placeholder' => 'OS',
         'color' => 'bright_green',
         'name' => $os,
     );
 
-    %ke = (
+    my %ke = (
         'placeholder' => 'KERNEL',
         'color' => 'blue',
         'name' => $ke,
     );
 
-    %de = (
+    my %de = (
         'placeholder' => $de_placeholder,
         'color' => 'bright_red',
         'name' => $de,
     );
 
-    %sh = (
+    my %sh = (
         'placeholder' => 'SHELL',
         'color' => 'yellow',
         'name' => $sh,
     );
 
-    %up = (
+    my %up = (
         'placeholder' => 'UPTIME',
         'color' => 'bright_magenta',
         'name' => $up,
     );
 
-    %pac = (
+    my %pac = (
         'placeholder' => 'PACKAGE',
         'color' => 'cyan',
         'name' => $pac,
@@ -196,6 +203,7 @@ sub get_info {
     $usg = format_info(\%usg);
 
     my $i = 0;
+    my @info;
     $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
     $info[$i++] = $os;
     if($vnstat eq '-1' ) { $info[$i++] = $ke; }
@@ -206,11 +214,11 @@ sub get_info {
     unless($vnstat eq '-1' ) { $info[$i++] = $usg; }
     $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
 
-    return $info;
+    return @info;
 }
 
 sub main {
-    my $info = get_info();
+    my @info = get_info();
     my $text = "\n";
 
     if($wally) {
