@@ -84,7 +84,7 @@ output
 **-de** or **--de** for desktop environment  
 **-s** or **--shell** for shell  
 **-u** or **--uptime** for uptime  
-**-p** or **--package** for package count  
+**-pa** or **--package** for package count  
 **-n** or **--not_de** to use 'WM' instead of 'DE'  
 **-v** or **--vnstat** to use vnstat instead of kernel  
 
@@ -92,6 +92,9 @@ output
 **-g** or **--gap** Spaces between info and info_value  
 **-l** or **--length** Length of the board (should be greater than 14)  
 
+> option can be of single character or more  
+> for ex: -help can be used via -h -he -hel -help as long as it avoids ambiguity  
+> for ex: -d is ambiguous (-dogbert , -de) so atleast 2 characters should be specified  
 ### Available colors
 black  red  green  yellow  blue  magenta  cyan  white  
 
