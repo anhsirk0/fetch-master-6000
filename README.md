@@ -10,6 +10,7 @@ ASCII art of alice is taken from Christopher Johnson collection: https://asciiar
 ![wally.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wally.png)
 ![dogbert.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/dogbert.png)
 ![alice.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/alice.png)
+![phb.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/phb.png)
 
 ### installation
 Its just a perl script
@@ -75,6 +76,8 @@ output
 **-c** or **--color** for base color  
 **-w** or **--wally** display Wally  
 **-dog** or **--dogbert** display Dogbert  
+**-a** or **--alice** display Alice  
+**-phb** or **--phb** display Pointy Haired Boss  
 
 **-o** or **--os** for os  
 **-k** or **--kernel** for kernel  
