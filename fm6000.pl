@@ -14,6 +14,7 @@ my $color = 'yellow';
 my $wally;
 my $dogbert;
 my $alice;
+my $phb;
 my $help;
 my $not_de;
 
@@ -135,6 +136,7 @@ sub get_info {
         "wally" => \$wally,
         "dogbert" => \$dogbert,
         "alice" => \$alice,
+        "phb" => \$phb,
     );
 
     if($help) {
@@ -256,6 +258,17 @@ sub main {
         $text .= colored(q{   (.,.,.|  ===  |.,.,.)    │}, $color) . $info[6] . colored('│', $color) . "\n";
         $text .= colored(q{          '.___.'           │}, $color) . $info[7] . colored('│', $color) . "\n";
         $text .= colored(q{           /   \            ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
+    } elsif ($phb) {
+        $text .= colored(q{  @         @    ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
+        $text .= colored(q{ @@  ..-..  @@   │}, $color) . $info[0] . colored('│', $color) . "\n";
+        $text .= colored(q{ @@@' _ _ '@@@   │}, $color) . $info[1] . colored('│', $color) . "\n";
+        $text .= colored(q{  @(  . .  )@   ╭│}, $color) . $info[2] . colored('│', $color) . "\n";
+        $text .= colored(q{   |  (_)  |    ││}, $color) . $info[3] . colored('│', $color) . "\n";
+        $text .= colored(q{   |   _   |    ││}, $color) . $info[4] . colored('│', $color) . "\n";
+        $text .= colored(q{   |_     _|    ╯│}, $color) . $info[5] . colored('│', $color) . "\n";
+        $text .= colored(q{  /|_'---'_|\    │}, $color) . $info[6] . colored('│', $color) . "\n";
+        $text .= colored(q{ / | '\_/' | \   │}, $color) . $info[7] . colored('│', $color) . "\n";
+        $text .= colored(q{/  |  | |  |  \  ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
     } else {
         $text .= colored(q{              ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
         $text .= colored(q{    დოოოოოდ   │}, $color) . $info[0] . colored('│', $color) . "\n";
@@ -278,6 +291,8 @@ sub print_help {
     print "-c, --color=STR    Base color\n";
     print "-w, --wally    Display Wally \n";
     print "-dog, --dogbert    Display Dogbert \n";
+    print "-a, --alice    Display Alice \n";
+    print "-phb, --phb    Display Pointy haired Boss \n";
     print "-n, --not_de    To use 'WM' instead of 'DE'\n";
     print "-o, --os=STR    OS name\n";
     print "-k or --kernel=STR    Kernel version\n";
