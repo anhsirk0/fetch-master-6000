@@ -305,7 +305,7 @@ sub print_help {
     print "-g or --gap=INT    Spaces between info and info_value\n";
     print "-l or --length=INT    Length of the board ( > 14)\n\n";
     print "available colors: \n";
-    print join(", ", splice(@colors, 0, 7)) . ", random" . "\n";
+    print join(", ", splice(@colors, 0, 7)) . ", random\n";
     print join(", ", @colors) . "\n";
 }
 
