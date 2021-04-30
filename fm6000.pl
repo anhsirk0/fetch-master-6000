@@ -299,7 +299,7 @@ sub print_help {
     print "-de or --de=STR    Desktop environment name\n";
     print "-s or --shell=STR    Shell name\n";
     print "-u or --uptime=STR    Uptime\n";
-    print "-p or --package=INT    Number of packages\n";
+    print "-pa or --package=INT    Number of packages\n";
     print "-v or --vnstat=STR    Use vnstat instead of kernel\n";
     print "-m or --margin=INT    Spaces on the left side of info\n";
     print "-g or --gap=INT    Spaces between info and info_value\n";
