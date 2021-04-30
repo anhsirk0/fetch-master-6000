@@ -1,6 +1,6 @@
 # Fetch-master 6000
 
-## Simple fecthing tool  
+## Simple fetching tool  
 ASCII art of dilbert is taken from the Kakoune text editor https://github.com/mawww/kakoune  
 ASCII art of alice is taken from Christopher Johnson collection: https://asciiart.website/index.php?art=comics/dilbert     
 
