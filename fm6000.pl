@@ -71,7 +71,10 @@ sub uptime {
     my $time = `uptime`;
     for($time) {
         s/.*up\s+//;
-        s/,.*//;
+        s/,\s+[0-9]+ user.*//;
+        s/ //g;
+        s/,/:/g;
+        s/[a-z]+//g;
         chomp
     }
 
