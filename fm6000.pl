@@ -57,7 +57,7 @@ sub packages {
     # for arch based
     my $pacs = `pacman -Q`;
     # for debian based
-    unless($pacs) { $pacs = `apt list --installed`; }
+    unless($pacs) { $pacs = `dpkg-query -f '\n' -W`; }
     # for fedora
     unless($pacs) { $pacs = `yum list installed`; }
     # for BSD
