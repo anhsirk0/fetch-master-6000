@@ -84,7 +84,7 @@ sub uptime {
     } elsif(scalar @time == 3) {
         $time = $time[2]. "d, " . $time[1]. "h, " . $time[0] . "m";    
     } else {
-        $time =~ s/ minutes/m/;
+        $time .= "m";
     }
     return $time;
 }
