@@ -31,6 +31,7 @@ sub get_os {
     for($os){
         s/"//;
         s/ .*//;
+        s/"//;
         chomp;
     }
     return $os;
