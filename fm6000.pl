@@ -15,6 +15,7 @@ my $wally;
 my $dogbert;
 my $alice;
 my $phb;
+my $asok;
 my $help;
 my $not_de;
 
@@ -143,6 +144,7 @@ sub get_info {
         "dogbert" => \$dogbert,
         "alice" => \$alice,
         "phb" => \$phb,
+        "asok" => \$asok,
     );
 
     if($help) {
@@ -275,6 +277,17 @@ sub main {
         $text .= colored(q{  /|_'---'_|\    │}, $color) . $info[6] . colored('│', $color) . "\n";
         $text .= colored(q{ / | '\_/' | \   │}, $color) . $info[7] . colored('│', $color) . "\n";
         $text .= colored(q{/  |  | |  |  \  ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
+    } elsif ($asok) {
+        $text .= colored(q{                ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
+        $text .= colored(q{    @@@@@@@@@   │}, $color) . $info[0] . colored('│', $color) . "\n";
+        $text .= colored(q{    |       |   │}, $color) . $info[1] . colored('│', $color) . "\n";
+        $text .= colored(q{    | _   _ |  ╭│}, $color) . $info[2] . colored('│', $color) . "\n";
+        $text .= colored(q{   Ͼ| ○   ○ |Ͽ ││}, $color) . $info[3] . colored('│', $color) . "\n";
+        $text .= colored(q{    |   u   |  ││}, $color) . $info[4] . colored('│', $color) . "\n";
+        $text .= colored(q{    |  ---  |  ╯│}, $color) . $info[5] . colored('│', $color) . "\n";
+        $text .= colored(q{   / `-._.-´ \  │}, $color) . $info[6] . colored('│', $color) . "\n";
+        $text .= colored(q{        |       │}, $color) . $info[7] . colored('│', $color) . "\n";
+        $text .= colored(q{                ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n";
     } else {
         $text .= colored(q{              ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
         $text .= colored(q{    დოოოოოდ   │}, $color) . $info[0] . colored('│', $color) . "\n";
