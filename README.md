@@ -8,10 +8,12 @@ ASCII art of alice is taken from Christopher Johnson collection: https://asciiar
 ![all1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all1.png)
 ![al2l.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all2.png)
 ![wally.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wally.png)
+![arts.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/arts.png)
 ![dogbert.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/dogbert.png)
 ![alice.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/alice.png)
 ![phb.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/phb.png)
 ![asok.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/asok.png)
+![random.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/random.png)
 
 ### installation
 Its just a perl script
