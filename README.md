@@ -1,8 +1,8 @@
 # Fetch-master 6000
 
 ## Simple fetching tool  
-ASCII art of dilbert is taken from the Kakoune text editor https://github.com/mawww/kakoune  
-ASCII art of alice is taken from Christopher Johnson collection: https://asciiart.website/index.php?art=comics/dilbert     
+ASCII art of Dilbert is taken from the Kakoune text editor https://github.com/mawww/kakoune  
+ASCII art of Alice, PHB is taken from [Christopher Johnson's collection](https://asciiart.website/index.php?art=comics/dilbert)  
 
 ### Screenshots
 ![all1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all1.png)
@@ -76,11 +76,31 @@ bash fm6000
 > option can be of single character or more  
 > for ex: -help can be used via -h -he -hel -help as long as it avoids ambiguity  
 > for ex: -d is ambiguous (-dogbert , -de) so atleast 2 characters should be specified  
+
 ### Available colors
-black  red  green  yellow  blue  magenta  cyan  white  
+black  red  green  yellow  blue  magenta  cyan  white random  
 
 bright_black  bright_red      bright_green  bright_yellow  
 bright_blue   bright_magenta  bright_cyan   bright_white  
+
+### Randomization
+For random color use:
+```bash
+fm6000 -color random
+```
+or
+```bash
+fm6000 -c random
+```
+
+For random character use:
+```bash
+fm6000 -random
+```
+or
+```bash
+fm6000 -r
+```
 
 ### Troubleshooting
 If your distro is not {arch, debian, fedora, freeBSD} based fetch-master-6000 wont be able to detect number of packages
