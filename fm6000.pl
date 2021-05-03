@@ -80,8 +80,10 @@ sub uptime {
 
     my @time = reverse(split ":", $time);
     if(scalar @time == 2) {
+        $time[0] =~ s/^0//; # remove starting '0' (01 -> 1)
         $time = $time[1]. "h, " . $time[0] . "m";
     } elsif(scalar @time == 3) {
+        $time[0] =~ s/^0//; # remove starting '0' (01 -> 1)
         $time = $time[2]. "d, " . $time[1]. "h, " . $time[0] . "m";    
     } else {
         $time .= "m";
