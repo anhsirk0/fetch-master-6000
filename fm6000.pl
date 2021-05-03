@@ -43,6 +43,7 @@ sub get_os {
 sub get_de {
     my $de = $ENV{XDG_CURRENT_DESKTOP};
     unless ($de) { $de = $ENV{XDG_SESSION_DESKTOP} };
+    unless ($de) { $de = $ENV{DESKTOP_SESSION} };
     return $de;
 }
 
