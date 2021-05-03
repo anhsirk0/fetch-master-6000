@@ -45,24 +45,6 @@ or
 bash fm6000
 ```
 
-## Options
-if for some reason fm6000 is unable to detect packages or any other options,  
-you can specify these options through commandline args  
-### For example
-
-```bash
-fm6000 -o Manjaro -p 1729 -s zsh
-```
-output
-
-![out1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out1.png)
-
-```bash
-fm6000 -p $(pacman -Q | wc -l)
-```
-output
-![out2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out2.png)
-
 ### Colors
 ![color1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/color1.png)
 
@@ -124,4 +106,10 @@ make it an alias to avoid typing it everytime
 alias fm6000='fm6000 -p $(eopkg list-installed | wc -l)'
 ```
 Similiarly for other distros
+
+```bash
+fm6000 -p $(pacman -Q | wc -l)
+```
+output
+![out2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out2.png)
 
