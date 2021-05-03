@@ -58,6 +58,7 @@ bash fm6000
 **-al** or **--alice** display Alice  
 **-phb** or **--phb** display Pointy Haired Boss  
 **-as** or **--asok** display Asok  
+**-r** or **--random** display Random art  
 
 **-o** or **--os** for os  
 **-k** or **--kernel** for kernel  
