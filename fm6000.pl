@@ -18,6 +18,7 @@ my $phb;
 my $asok;
 my $help;
 my $not_de;
+my $random;
 
 my @colors = (
     'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
@@ -145,6 +146,7 @@ sub get_info {
         "alice" => \$alice,
         "phb" => \$phb,
         "asok" => \$asok,
+        "random" => \$random,
     );
 
     if($help) {
@@ -231,9 +233,14 @@ sub get_info {
 
 sub main {
     my @info = get_info();
+    if ($random) {
+        my @arr = map { 0 } (1..6);
+        $arr[int rand(6)] = 1;
+        ($wally, $dogbert, $alice, $phb, $asok) = splice @arr, 0, 4;
+    }
     my $text = "\n";
 
-    if($wally) {
+    if ($wally) {
         $text .= colored(q{                 ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
         $text .= colored(q{     .-'''-.     │}, $color) . $info[0] . colored('│', $color) . "\n";
         $text .= colored(q{    |       |    │}, $color) . $info[1] . colored('│', $color) . "\n";
