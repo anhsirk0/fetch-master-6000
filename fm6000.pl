@@ -2,6 +2,7 @@
 
 # Dilbert themed system info fetch tool
 # https://github.com/anhsirk0/fetch-master-6000
+
 use strict;
 use Term::ANSIColor;
 use Getopt::Long;
@@ -29,7 +30,7 @@ my @colors = (
 sub get_os {
     my $os = `lsb_release -sd`;
     # for BSD
-    unless($os) { $os = `uname -s`; }
+    unless ($os) { $os = `uname -s`; }
     for($os){
         s/"//;
         s/ .*//;
@@ -41,7 +42,7 @@ sub get_os {
 
 sub get_de {
     my $de = $ENV{XDG_CURRENT_DESKTOP};
-    unless($de) { $de = $ENV{XDG_SESSION_DESKTOP} };
+    unless ($de) { $de = $ENV{XDG_SESSION_DESKTOP} };
     return $de;
 }
 
@@ -60,11 +61,11 @@ sub packages {
     # for arch based
     my $pacs = `pacman -Q`;
     # for debian based
-    unless($pacs) { $pacs = `dpkg-query -f '\n' -W`; }
+    unless ($pacs) { $pacs = `dpkg-query -f '\n' -W`; }
     # for fedora
-    unless($pacs) { $pacs = `yum list installed`; }
+    unless ($pacs) { $pacs = `yum list installed`; }
     # for BSD
-    unless($pacs) { $pacs = `pkg info`; }
+    unless ($pacs) { $pacs = `pkg info`; }
 
     my $count = $pacs =~ tr/\n//;
     return $count;
@@ -82,10 +83,10 @@ sub uptime {
     }
 
     my @time = reverse(split ":", $time);
-    if(scalar @time == 2) {
+    if (scalar @time == 2) {
         $time[0] =~ s/^0//; # remove starting '0' (01 -> 1)
         $time = $time[1]. "h, " . $time[0] . "m";
-    } elsif(scalar @time == 3) {
+    } elsif (scalar @time == 3) {
         $time[0] =~ s/^0//; # remove starting '0' (01 -> 1)
         $time = $time[2]. "d, " . $time[1]. "h, " . $time[0] . "m";    
     } else {
@@ -149,20 +150,20 @@ sub get_info {
         "random" => \$random,
     );
 
-    if($help) {
+    if ($help) {
         print_help();
         exit;
     }
 
-    if($not_de) {
+    if ($not_de) {
         $de_placeholder = 'WM';
     }
 
-    if($vnstat eq '') {
+    if ($vnstat eq '') {
         $vnstat = usage();
     }
 
-    if($color eq "random") {
+    if ($color eq "random") {
         $color = @colors[int(rand scalar @colors)];
     }
 
@@ -220,12 +221,12 @@ sub get_info {
     my @info;
     $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
     $info[$i++] = $os;
-    if($vnstat eq '-1' ) { $info[$i++] = $ke; }
+    if ($vnstat eq '-1' ) { $info[$i++] = $ke; }
     $info[$i++] = $de;
     $info[$i++] = $sh;
     $info[$i++] = $up;
     $info[$i++] = $pac;
-    unless($vnstat eq '-1' ) { $info[$i++] = $usg; }
+    unless ($vnstat eq '-1' ) { $info[$i++] = $usg; }
     $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
 
     return @info;
@@ -238,8 +239,8 @@ sub main {
         $arr[int rand(6)] = 1;
         ($wally, $dogbert, $alice, $phb, $asok) = splice @arr, 0, 4;
     }
-    my $text = "\n";
 
+    my $text = "\n";
     if ($wally) {
         $text .= colored(q{                 ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n";
         $text .= colored(q{     .-'''-.     │}, $color) . $info[0] . colored('│', $color) . "\n";
@@ -317,8 +318,10 @@ sub print_help {
     print "-c, --color=STR    Base color\n";
     print "-w, --wally    Display Wally \n";
     print "-dog, --dogbert    Display Dogbert \n";
-    print "-a, --alice    Display Alice \n";
+    print "-al, --alice    Display Alice \n";
     print "-phb, --phb    Display Pointy haired Boss \n";
+    print "-as, --asok    Display Asok \n";
+    print "-r, --random    Display Random Art \n";
     print "-n, --not_de    To use 'WM' instead of 'DE'\n";
     print "-o, --os=STR    OS name\n";
     print "-k or --kernel=STR    Kernel version\n";
