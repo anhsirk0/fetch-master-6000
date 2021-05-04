@@ -50,6 +50,9 @@ bash fm6000
 fm6000 -f wolf.txt
 ```
 ![wolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wolf.png)
+```bash
+kak wolf.txt
+```
 ![rawwolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/rawwolf.png)
 
 #### about custom ascii_art file
