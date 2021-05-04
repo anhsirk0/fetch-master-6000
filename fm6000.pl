@@ -353,6 +353,7 @@ sub print_help {
     print "-phb, --phb    Display Pointy haired Boss \n";
     print "-as, --asok    Display Asok \n";
     print "-r, --random    Display Random Art \n";
+    print "-f, --file    Display art from file\n";
     print "-n, --not_de    To use 'WM' instead of 'DE'\n";
     print "-o, --os=STR    OS name\n";
     print "-k or --kernel=STR    Kernel version\n";
