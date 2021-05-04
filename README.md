@@ -26,12 +26,16 @@ making it executable
 ```bash
 chmod +x fm6000
 ```
-copying it to $PATH (in this case /usr/local/bin/ requires root , this step is optional)
+copying it to $PATH (in this case /usr/local/bin/ (requires root), this step is optional)
 ```bash
 # cp fm6000 /usr/local/bin/
 ```
 
 ### usage
+if fm6000 in $PATH
+```bash
+fm6000
+```
 runing the script
 ```bash
 ./fm6000
