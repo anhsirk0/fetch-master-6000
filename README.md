@@ -50,6 +50,7 @@ bash fm6000
 fm6000 -f wolf.txt
 ```
 ![wolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wolf.png)
+![rawwolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/rawwolf.png)
 
 #### about custom ascii_art file
 every line should be of same length (use spaces if needed)
