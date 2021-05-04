@@ -256,17 +256,16 @@ sub main {
        colored(q{  ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n"
     );
 
-
     my $i = 0;
     my $text = "\n";
     if ($ascii_file) {
         open (FH, "<", $ascii_file) or die "Unable to open $ascii_file";
         chomp(my @ascii =  <FH>);
-        my $offset = abs int(scalar @ascii / 2 - 5);
+        my $offset = abs int(scalar @ascii / 2 - 5); # to keep info in middle
 
         for (my $i = 0; $i < scalar @ascii; $i++) {
             my $j = $i - $offset;
-            if ($j >= 0 && $j < 10) {
+            if ($j >= 0 && $j < 10) { # info is of 10 lines
                 $text .= colored($ascii[$i], $color) . $info_lines[$j];
             } else {
                 $text .= colored($ascii[$i], $color) . "\n";
