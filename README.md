@@ -45,6 +45,15 @@ or
 bash fm6000
 ```
 
+### Displaying custom ASCII from file
+```bash
+fm6000 -f wolf.txt
+```
+![wolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wolf.png)
+
+#### about custom ascii_art file
+every line should be of same length (use spaces if needed)
+
 ### Colors
 ![color1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/color1.png)
 
@@ -63,6 +72,7 @@ bash fm6000
 **-phb** or **--phb** display Pointy Haired Boss  
 **-as** or **--asok** display Asok  
 **-r** or **--random** display Random art  
+**-f** or **--file** display ascii art from file  
 
 **-o** or **--os** for os  
 **-k** or **--kernel** for kernel  
