@@ -247,16 +247,16 @@ sub main {
     }
 
     my @info_lines = ( # info about os, wm etc etc
-       colored(q{  ╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n",
-       colored(q{  │}, $color) . $info[0] . colored('│', $color) . "\n",
-       colored(q{  │}, $color) . $info[1] . colored('│', $color) . "\n",
-       colored(q{ ╭│}, $color) . $info[2] . colored('│', $color) . "\n",
-       colored(q{ ││}, $color) . $info[3] . colored('│', $color) . "\n",
-       colored(q{ ││}, $color) . $info[4] . colored('│', $color) . "\n",
-       colored(q{ ╯│}, $color) . $info[5] . colored('│', $color) . "\n",
-       colored(q{  │}, $color) . $info[6] . colored('│', $color) . "\n",
-       colored(q{  │}, $color) . $info[7] . colored('│', $color) . "\n",
-       colored(q{  ╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n"
+       colored(q{╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color) . "\n",
+       colored(q{│}, $color) . $info[0] . colored('│', $color) . "\n",
+       colored(q{│}, $color) . $info[1] . colored('│', $color) . "\n",
+       colored(q{│}, $color) . $info[2] . colored('│', $color) . "\n",
+       colored(q{│}, $color) . $info[3] . colored('│', $color) . "\n",
+       colored(q{│}, $color) . $info[4] . colored('│', $color) . "\n",
+       colored(q{│}, $color) . $info[5] . colored('│', $color) . "\n",
+       colored(q{│}, $color) . $info[6] . colored('│', $color) . "\n",
+       colored(q{│}, $color) . $info[7] . colored('│', $color) . "\n",
+       colored(q{╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color) . "\n"
     );
 
     my $i = 0;
@@ -275,71 +275,71 @@ sub main {
             }
         }
     } elsif ($wally) {
-        $text .= colored(q{                }, $color) . $info_lines[$i++];
-        $text .= colored(q{     .-'''-.    }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |       |   }, $color) . $info_lines[$i++];
-        $text .= colored(q{   ⪜|---_---|⪛  }, $color) . $info_lines[$i++];
-        $text .= colored(q{   Ͼ|__(_)__|Ͽ  }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |   _   |   }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |       |   }, $color) . $info_lines[$i++];
-        $text .= colored(q{   ˏ====○====ˎ  }, $color) . $info_lines[$i++];
-        $text .= colored(q{       / \      }, $color) . $info_lines[$i++];
-        $text .= colored(q{                }, $color) . $info_lines[$i++];
+        $text .= colored(q{                  }, $color) . $info_lines[$i++];
+        $text .= colored(q{     .-'''-.      }, $color) . $info_lines[$i++];
+        $text .= colored(q{    |       |     }, $color) . $info_lines[$i++];
+        $text .= colored(q{   ⪜|---_---|⪛   ╭}, $color) . $info_lines[$i++];
+        $text .= colored(q{   Ͼ|__(_)__|Ͽ   │}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |   _   |    │}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |       |    ╯}, $color) . $info_lines[$i++];
+        $text .= colored(q{   ˏ====○====ˎ    }, $color) . $info_lines[$i++];
+        $text .= colored(q{       / \        }, $color) . $info_lines[$i++];
+        $text .= colored(q{                  }, $color) . $info_lines[$i++];
     } elsif ($dogbert) {
-        $text .= colored(q{               }, $color) . $info_lines[$i++];
-        $text .= colored(q{               }, $color) . $info_lines[$i++];
-        $text .= colored(q{    .-----.    }, $color) . $info_lines[$i++];
-        $text .= colored(q{  .`       `.  }, $color) . $info_lines[$i++];
-        $text .= colored(q{ / /-() ()-\ \ }, $color) . $info_lines[$i++];
-        $text .= colored(q{ \_|   ○   |_/ }, $color) . $info_lines[$i++];
-        $text .= colored(q{  '.       .'  }, $color) . $info_lines[$i++];
-        $text .= colored(q{    `-._.-'    }, $color) . $info_lines[$i++];
-        $text .= colored(q{               }, $color) . $info_lines[$i++];
-        $text .= colored(q{               }, $color) . $info_lines[$i++];
+        $text .= colored(q{                 }, $color) . $info_lines[$i++];
+        $text .= colored(q{                 }, $color) . $info_lines[$i++];
+        $text .= colored(q{    .-----.      }, $color) . $info_lines[$i++];
+        $text .= colored(q{  .`       `.   ╭}, $color) . $info_lines[$i++];
+        $text .= colored(q{ / /-() ()-\ \  │}, $color) . $info_lines[$i++];
+        $text .= colored(q{ \_|   ○   |_/  │}, $color) . $info_lines[$i++];
+        $text .= colored(q{  '.       .'   ╯}, $color) . $info_lines[$i++];
+        $text .= colored(q{    `-._.-'      }, $color) . $info_lines[$i++];
+        $text .= colored(q{                 }, $color) . $info_lines[$i++];
+        $text .= colored(q{                 }, $color) . $info_lines[$i++];
     } elsif ($alice) {
-        $text .= colored(q{           ..-..           }, $color) . $info_lines[$i++];
-        $text .= colored(q{         (~     ~)         }, $color) . $info_lines[$i++];
-        $text .= colored(q{       (           )       }, $color) . $info_lines[$i++];
-        $text .= colored(q{     (    ~~~~~~~    )     }, $color) . $info_lines[$i++];
-        $text .= colored(q{   (     |  . .  |     )   }, $color) . $info_lines[$i++];
-        $text .= colored(q{  (      |  (_)  |      )  }, $color) . $info_lines[$i++];
-        $text .= colored(q{ (       |       |       ) }, $color) . $info_lines[$i++];
-        $text .= colored(q{   (.,.,.|  ===  |.,.,.)   }, $color) . $info_lines[$i++];
-        $text .= colored(q{          '.___.'          }, $color) . $info_lines[$i++];
-        $text .= colored(q{           /   \           }, $color) . $info_lines[$i++];
+        $text .= colored(q{           ..-..             }, $color) . $info_lines[$i++];
+        $text .= colored(q{         (~     ~)           }, $color) . $info_lines[$i++];
+        $text .= colored(q{       (           )         }, $color) . $info_lines[$i++];
+        $text .= colored(q{     (    ~~~~~~~    )      ╭}, $color) . $info_lines[$i++];
+        $text .= colored(q{   (     |  . .  |     )    │}, $color) . $info_lines[$i++];
+        $text .= colored(q{  (      |  (_)  |      )   │}, $color) . $info_lines[$i++];
+        $text .= colored(q{ (       |       |       )  ╯}, $color) . $info_lines[$i++];
+        $text .= colored(q{   (.,.,.|  ===  |.,.,.)     }, $color) . $info_lines[$i++];
+        $text .= colored(q{          '.___.'            }, $color) . $info_lines[$i++];
+        $text .= colored(q{           /   \             }, $color) . $info_lines[$i++];
     } elsif ($phb) {
-        $text .= colored(q{   @         @   }, $color) . $info_lines[$i++];
-        $text .= colored(q{  @@  ..-..  @@  }, $color) . $info_lines[$i++];
-        $text .= colored(q{  @@@' _ _ '@@@  }, $color) . $info_lines[$i++];
-        $text .= colored(q{   @(  . .  )@   }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |  (_)  |    }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |   _   |    }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |_     _|    }, $color) . $info_lines[$i++];
-        $text .= colored(q{   /|_'---'_|\   }, $color) . $info_lines[$i++];
-        $text .= colored(q{  / | '\_/' | \  }, $color) . $info_lines[$i++];
-        $text .= colored(q{ /  |  | |  |  \ }, $color) . $info_lines[$i++];
+        $text .= colored(q{   @         @     }, $color) . $info_lines[$i++];
+        $text .= colored(q{  @@  ..-..  @@    }, $color) . $info_lines[$i++];
+        $text .= colored(q{  @@@' _ _ '@@@    }, $color) . $info_lines[$i++];
+        $text .= colored(q{   @(  . .  )@    ╭}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |  (_)  |     │}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |   _   |     │}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |_     _|     ╯}, $color) . $info_lines[$i++];
+        $text .= colored(q{   /|_'---'_|\     }, $color) . $info_lines[$i++];
+        $text .= colored(q{  / | '\_/' | \    }, $color) . $info_lines[$i++];
+        $text .= colored(q{ /  |  | |  |  \   }, $color) . $info_lines[$i++];
     } elsif ($asok) {
-        $text .= colored(q{               }, $color) . $info_lines[$i++];
-        $text .= colored(q{    @@@@@@@@@  }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |       |  }, $color) . $info_lines[$i++];
-        $text .= colored(q{    | _   _ |  }, $color) . $info_lines[$i++];
-        $text .= colored(q{   Ͼ| ○   ○ |Ͽ }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |   u   |  }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |  ---  |  }, $color) . $info_lines[$i++];
-        $text .= colored(q{   / `-._.-´ \ }, $color) . $info_lines[$i++];
-        $text .= colored(q{        |      }, $color) . $info_lines[$i++];
-        $text .= colored(q{               }, $color) . $info_lines[$i++];
+        $text .= colored(q{                 }, $color) . $info_lines[$i++];
+        $text .= colored(q{    @@@@@@@@@    }, $color) . $info_lines[$i++];
+        $text .= colored(q{    |       |    }, $color) . $info_lines[$i++];
+        $text .= colored(q{    | _   _ |   ╭}, $color) . $info_lines[$i++];
+        $text .= colored(q{   Ͼ| ○   ○ |Ͽ  │}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |   u   |   │}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |  ---  |   ╯}, $color) . $info_lines[$i++];
+        $text .= colored(q{   / `-._.-´ \   }, $color) . $info_lines[$i++];
+        $text .= colored(q{        |        }, $color) . $info_lines[$i++];
+        $text .= colored(q{                 }, $color) . $info_lines[$i++];
     } else {
-        $text .= colored(q{             }, $color) . $info_lines[$i++];
-        $text .= colored(q{    დოოოოოდ  }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |     |  }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |     |  }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |-ᱛ ᱛ-|  }, $color) . $info_lines[$i++];
-        $text .= colored(q{   Ͼ   ∪   Ͽ }, $color) . $info_lines[$i++];
-        $text .= colored(q{    |     |  }, $color) . $info_lines[$i++];
-        $text .= colored(q{   ˏ`-.ŏ.-´ˎ }, $color) . $info_lines[$i++];
-        $text .= colored(q{       @     }, $color) . $info_lines[$i++];
-        $text .= colored(q{        @    }, $color) . $info_lines[$i++];
+        $text .= colored(q{               }, $color) . $info_lines[$i++];
+        $text .= colored(q{    დოოოოოდ    }, $color) . $info_lines[$i++];
+        $text .= colored(q{    |     |    }, $color) . $info_lines[$i++];
+        $text .= colored(q{    |     |   ╭}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |-ᱛ ᱛ-|   │}, $color) . $info_lines[$i++];
+        $text .= colored(q{   Ͼ   ∪   Ͽ  │}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |     |   ╯}, $color) . $info_lines[$i++];
+        $text .= colored(q{   ˏ`-.ŏ.-´ˎ   }, $color) . $info_lines[$i++];
+        $text .= colored(q{       @       }, $color) . $info_lines[$i++];
+        $text .= colored(q{        @      }, $color) . $info_lines[$i++];
     }
 
     $text .= "\n";
