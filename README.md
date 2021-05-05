@@ -61,7 +61,8 @@ kak wolf.txt
 ![rawwolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/rawwolf.png)
 
 #### about custom ascii_art file
-every line should be of same length (use spaces if needed)
+every line should be of same length (use spaces if needed)  
+atleast 10 lines is required (use empty spaces lines if needed)
 
 ### Colors
 ![color1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/color1.png)
