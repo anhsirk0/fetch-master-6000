@@ -73,6 +73,9 @@ sub packages {
     unless ($pacs) { $pacs = `pkg info`; }
 
     my $count = $pacs =~ tr/\n//;
+    if ($count == 0) {
+        $count = 'Unknown';
+    }
     return $count;
 }
 
