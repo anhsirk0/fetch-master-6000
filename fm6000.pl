@@ -35,9 +35,8 @@ sub get_os {
     # for BSD
     unless ($os) { $os = `uname -s`; }
     for($os){
-        s/"//;
+        s/"//g;
         s/ .*//;
-        s/"//;
         chomp;
     }
     return $os;
