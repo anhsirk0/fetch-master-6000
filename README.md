@@ -14,6 +14,12 @@ ASCII art of wolf is taken from [asciiart.eu](https://www.asciiart.eu/animals/wo
 Its just a perl script
 download it make it executable and put somewhere in your $PATH
 
+### via install script
+```bash
+curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh | bash
+```
+
+### manually
 with wget
 ``` bash
 wget https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl -O fm6000
