@@ -46,31 +46,35 @@ sub get_de {
     my $de = $ENV{XDG_CURRENT_DESKTOP};
     unless ($de) { $de = $ENV{XDG_SESSION_DESKTOP} };
     unless ($de) { $de = $ENV{DESKTOP_SESSION} };
+    unless ($de) { $de = "Unknown" };
     return $de;
 }
 
 sub shell {
-    return (split '/', $ENV{SHELL})[-1];
+    my $sh = (split '/', $ENV{SHELL})[-1];
+    unless ($sh) { $sh = "Unknown" };
+    return $sh;
 }
 
 sub kernel {
     my $ke = `uname -r`;
     $ke =~ s/-.*//;
     chomp $ke;
-    return $ke
+    unless ($ke) { $ke = "Unknown" };
+    return $ke;
 }
 
 sub packages {
     # for arch based
     my $pacs = `pacman -Q`;
     # for gentoo based
-    unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/*`; }
+    unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/*` }
     # for debian based
-    unless ($pacs) { $pacs = `dpkg-query -f '\n' -W`; }
+    unless ($pacs) { $pacs = `dpkg-query -f '\n' -W` }
     # for fedora
-    unless ($pacs) { $pacs = `yum list installed`; }
+    unless ($pacs) { $pacs = `yum list installed` }
     # for BSD
-    unless ($pacs) { $pacs = `pkg info`; }
+    unless ($pacs) { $pacs = `pkg info` }
 
     my $count = $pacs =~ tr/\n//;
     if ($count == 0) {
@@ -235,7 +239,7 @@ sub get_info {
     $info[$i++] = $sh;
     $info[$i++] = $up;
     $info[$i++] = $pac;
-    unless ($vnstat eq '-1' ) { $info[$i++] = $usg; }
+    unless ($vnstat eq '-1' ) { $info[$i++] = $usg }
     $info[$i++] = ' ' x ($length + $gap + 7 + $margin);
 
     return @info;
