@@ -64,7 +64,12 @@ fm6000 -f wolf.txt
 ```bash
 kak wolf.txt
 ```
-![rawwolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/rawwolf.png)
+![rawwolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/rawwolf.png)  
+
+```bash
+fm6000 -f arch_logo.txt
+```
+![arch_logo.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/arch_logo.png)
 
 ### About custom ascii_art file
 every line should be of same length (use spaces if needed)  
