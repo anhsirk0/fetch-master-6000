@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-url="https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl"
+url="https://raw.githubusercontent.com/luis-07/fetch-master-6000/master/fm6000"
 if [[ $(command -v curl) ]]; then
     echo "Downloading the script"
     curl $url -o fm6000
