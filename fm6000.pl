@@ -30,6 +30,8 @@ my @colors = (
 
 sub get_os {
     my $os = `lsb_release -sd`;
+    # for gentoo
+    unless ($os) { $os = `[ -x "/etc/portage" ] && echo "Gentoo"` }
     # for BSD
     unless ($os) { $os = `uname -s`; }
     for($os){
@@ -62,6 +64,8 @@ sub kernel {
 sub packages {
     # for arch based
     my $pacs = `pacman -Q`;
+    # for gentoo based
+    unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/*`; }
     # for debian based
     unless ($pacs) { $pacs = `dpkg-query -f '\n' -W`; }
     # for fedora
@@ -90,7 +94,7 @@ sub uptime {
         $time = $time[1]. "h, " . $time[0] . "m";
     } elsif (scalar @time == 3) {
         $time[0] =~ s/^0//; # remove starting '0' (01 -> 1)
-        $time = $time[2]. "d, " . $time[1]. "h, " . $time[0] . "m";    
+        $time = $time[2]. "d, " . $time[1]. "h, " . $time[0] . "m";
     } else {
         $time .= "m";
     }
@@ -370,4 +374,3 @@ sub print_help {
 }
 
 main();
-
