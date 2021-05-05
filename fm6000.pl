@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/bin/perl
 
 # Dilbert themed system info fetch tool
 # https://github.com/anhsirk0/fetch-master-6000
