@@ -74,7 +74,7 @@ sub packages {
 
     my $count = $pacs =~ tr/\n//;
     if ($count == 0) {
-		    $count = 'Unknown';
+        $count = 'Unknown';
     }
     return $count;
 }
