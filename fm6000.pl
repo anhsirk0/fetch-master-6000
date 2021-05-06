@@ -6,6 +6,7 @@
 use strict;
 use Term::ANSIColor;
 use Getopt::Long;
+use experimental 'smartmatch';
 
 my $length = 13;
 my $gap = 3;
@@ -26,6 +27,16 @@ my @colors = (
     'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
     'bright_red', 'bright_green', 'bright_yellow',
     'bright_blue', 'bright_magenta', 'bright_cyan', 'bright_white'
+);
+
+my @wm = (
+    'fluxbox', 'openbox', 'blackbox', 'xfwm4', 'metacity', 'kwin', 'twin', 'icewm',
+    'pekwm', 'flwm', 'flwm_topside', 'fvwm', 'dwm', 'awesome', 'wmaker', 'stumpwm',
+    'musca', 'xmonad', 'i3', 'ratpoison', 'scrotwm', 'spectrwm', 'wmfs', 'wmii',
+    'beryl', 'subtle', 'e16', 'enlightenment', 'sawfish', 'emerald', 'monsterwm',
+    'dminiwm', 'compiz', 'Finder','herbstluftwm', 'howm', 'notion', 'bspwm', '2bwm',
+    'echinus', 'swm', 'budgie-wm', 'dtwm', '9wm', 'chromeos-wm', 'deepin-wm', 'sway',
+    'mwm', 'instawm'
 );
 
 sub get_os {
@@ -168,6 +179,10 @@ sub get_info {
     }
 
     if ($not_de) {
+        $de_placeholder = 'WM';
+    }
+    
+    if ($de ~~ @wm) {
         $de_placeholder = 'WM';
     }
 
