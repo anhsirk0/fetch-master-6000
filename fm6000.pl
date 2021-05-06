@@ -74,7 +74,7 @@ sub packages {
     # for BSD
     unless ($pacs) { $pacs = `pkg info` }
     # for gentoo based
-    unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/*` }
+    unless ($pacs) { $pacs = `[ -x "/var/db/pkg/" ] && ls -d /var/db/pkg/*/*` }
 
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" };
