@@ -45,15 +45,15 @@ sub get_os {
 
 sub get_de {
     my $de = $ENV{XDG_CURRENT_DESKTOP};
-    unless ($de) { $de = $ENV{XDG_SESSION_DESKTOP} };
-    unless ($de) { $de = $ENV{DESKTOP_SESSION} };
-    unless ($de) { $de = "Unknown" };
+    unless ($de) { $de = $ENV{XDG_SESSION_DESKTOP} }
+    unless ($de) { $de = $ENV{DESKTOP_SESSION} }
+    unless ($de) { $de = "Unknown" }
     return $de;
 }
 
 sub shell {
     my $sh = (split '/', $ENV{SHELL})[-1];
-    unless ($sh) { $sh = "Unknown" };
+    unless ($sh) { $sh = "Unknown" }
     return $sh;
 }
 
@@ -61,7 +61,7 @@ sub kernel {
     my $ke = `uname -r`;
     $ke =~ s/-.*//;
     chomp $ke;
-    unless ($ke) { $ke = "Unknown" };
+    unless ($ke) { $ke = "Unknown" }
     return $ke;
 }
 
@@ -75,10 +75,10 @@ sub packages {
     # for BSD
     unless ($pacs) { $pacs = `pkg info 2>/dev/null` }
     # for gentoo based
-    unless ($pacs) { $pacs = `[ -x "/var/db/pkg/" ] && ls -d /var/db/pkg/*/* 2>/dev/null` }
+    unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/* 2>/dev/null` }
 
     my $count = $pacs =~ tr/\n//;
-    unless ($count) { $count = "Unknown" };
+    unless ($count) { $count = "Unknown" }
     return $count;
 }
 
