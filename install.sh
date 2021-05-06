@@ -1,33 +1,45 @@
 #!/usr/bin/env bash
 
-url="https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl"
-if [[ $(command -v curl) ]]; then
+if [[ -f "fm6000.pl" ]]; then
+  echo "Seems like you cloned the repository"
+  cp fm6000.pl fm6000
+else
+  url="https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl"
+  if [[ $(command -v curl) ]]; then
     echo "Downloading the script"
     curl $url -o fm6000
-elif [[ $(command -v wget) ]]; then
+  elif [[ $(command -v wget) ]]; then
     echo "Downloading the script"
     wget $url -O fm6000
-else
+  else
     echo "curl or wget is required" && exit
+  fi
 fi
 
-if [[ -f "fm6000" && -s "fm6000" ]]; then
-    chmod +x fm6000
-    echo "Making the script executable : done"
-    read -p "Move the script to /usr/local/bin/ [root required]? (y/N) " ans
-    if [[ "${ans,,}" == "y" ]]; then
-        echo "Moving fm6000 to /usr/local/bin/"
-        if [[ $(command -v doas) ]]; then
-            doas mv fm6000 /usr/local/bin/
-        else
-            sudo mv fm6000 /usr/local/bin/
-        fi
-    else
-        echo "Script not moved"
-        ./fm6000
-    fi
-    echo "Fetch-master-6000 is succesfully installed"
+if [ "$(command -v doas)" ]; then
+	sudo=doas
 else
-    echo "Unable to download the script"
+	sudo=sudo
 fi
-
+if [[ -f "fm6000" && -s "fm6000" ]]; then
+  chmod +x fm6000
+  echo "Making the script executable : done"
+  if [ -x $HOME/.local/bin ]; then
+    install_path=$HOME/.local/bin
+    sudo=
+    read -p "Move the script to $install_path [root not required]? (y/N) " ans
+  else
+    install_path=/usr/local/bin
+    read -p "Move the script to $install_path [root required]? (y/N) " ans
+  fi
+  if [[ "${ans,,}" == "y" ]]; then
+		echo "Moving fm6000 to $install_path"
+		$sudo mv fm6000 $install_path
+  else
+    echo "Script not moved"
+    ./fm6000
+  fi
+  echo "Fetch-master-6000 is succesfully installed"
+else
+  echo "Unable to download the script"
+fi
