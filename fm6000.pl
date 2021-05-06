@@ -34,7 +34,7 @@ sub get_os {
     unless ($os) { $os = `[ -x "/etc/portage" ] && echo "Gentoo" 2>/dev/null` }
     # for BSD
     unless ($os) { $os = `uname -s 2>/dev/null` }
-    unles ($os) { $os = "Unknown" }
+    unless ($os) { $os = "Unknown" }
     for($os){
         s/"//g;
         s/ .*//;
