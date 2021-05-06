@@ -67,14 +67,14 @@ sub kernel {
 sub packages {
     # for arch based
     my $pacs = `pacman -Q`;
-    # for gentoo based
-    unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/*` }
     # for debian based
     unless ($pacs) { $pacs = `dpkg-query -f '\n' -W` }
     # for fedora
     unless ($pacs) { $pacs = `yum list installed` }
     # for BSD
     unless ($pacs) { $pacs = `pkg info` }
+    # for gentoo based
+    unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/*` }
 
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" };
