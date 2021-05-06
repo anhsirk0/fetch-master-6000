@@ -33,9 +33,9 @@ making it executable
 ```bash
 chmod +x fm6000
 ```
-copying it to $PATH (in this case /usr/local/bin/ (requires root), this step is optional)
+copying it to $PATH (~/.local/bin/ , this step is optional)
 ```bash
-# cp fm6000 /usr/local/bin/
+cp fm6000 ~/.local/bin/
 ```
 
 ## Usage
