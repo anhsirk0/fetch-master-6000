@@ -29,11 +29,12 @@ my @colors = (
 );
 
 sub get_os {
-    my $os = `lsb_release -sd`;
+    my $os = `lsb_release -sd 2>/dev/null`;
     # for gentoo
-    unless ($os) { $os = `[ -x "/etc/portage" ] && echo "Gentoo"` }
+    unless ($os) { $os = `[ -x "/etc/portage" ] && echo "Gentoo" 2>/dev/null` }
     # for BSD
-    unless ($os) { $os = `uname -s`; }
+    unless ($os) { $os = `uname -s 2>/dev/null` }
+    unles ($os) { $os = "Unknown" }
     for($os){
         s/"//g;
         s/ .*//;
@@ -66,15 +67,15 @@ sub kernel {
 
 sub packages {
     # for arch based
-    my $pacs = `pacman -Q`;
+    my $pacs = `pacman -Q 2>/dev/null`;
     # for debian based
-    unless ($pacs) { $pacs = `dpkg-query -f '\n' -W` }
+    unless ($pacs) { $pacs = `dpkg-query -f '\n' -W 2>/dev/null` }
     # for fedora
-    unless ($pacs) { $pacs = `yum list installed` }
+    unless ($pacs) { $pacs = `yum list installed 2>/dev/null` }
     # for BSD
-    unless ($pacs) { $pacs = `pkg info` }
+    unless ($pacs) { $pacs = `pkg info 2>/dev/null` }
     # for gentoo based
-    unless ($pacs) { $pacs = `[ -x "/var/db/pkg/" ] && ls -d /var/db/pkg/*/*` }
+    unless ($pacs) { $pacs = `[ -x "/var/db/pkg/" ] && ls -d /var/db/pkg/*/* 2>/dev/null` }
 
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" };
