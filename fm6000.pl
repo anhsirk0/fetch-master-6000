@@ -181,7 +181,7 @@ sub get_info {
     if ($not_de) {
         $de_placeholder = 'WM';
     }
-    
+
     if ($de ~~ @wm) {
         $de_placeholder = 'WM';
     }
