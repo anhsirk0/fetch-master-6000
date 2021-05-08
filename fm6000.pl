@@ -123,7 +123,8 @@ sub usage {
     my $today;
     foreach my $line (split '\n', $data) {
         if ($line =~ /today/) {
-            $today = (split '\|', $line)[2];
+            $line =~ s/\|/\//g; # newer vnstat uses | as separator
+            $today = (split '/', $line)[2];
             $today =~ s/^ *//;
         }
     }
