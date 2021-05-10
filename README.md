@@ -14,6 +14,8 @@ ASCII art of wolf is taken from [asciiart.eu](https://www.asciiart.eu/animals/wo
 Its just a perl script
 download it make it executable and put somewhere in your $PATH
 
+**For Gentoo** refer to the [XDream's Repository](https://github.com/XDream8/dreamsrepo)
+
 ## Via install script
 ```bash
 curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh | bash
