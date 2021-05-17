@@ -8,11 +8,8 @@ else
     if [[ $(command -v curl) ]]; then
         echo "Downloading the script"
         curl $url -o fm6000
-    elif [[ $(command -v wget) ]]; then
-        echo "Downloading the script"
-        wget $url -O fm6000
     else
-        echo "curl or wget is required" && exit
+        echo "curl is required" && exit
     fi
 fi
 
