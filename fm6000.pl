@@ -367,7 +367,7 @@ sub main {
         $text .= colored(q{    დოოოოოდ    }, $color) . $info_lines[$i++];
         $text .= colored(q{    |     |    }, $color) . $info_lines[$i++];
         $text .= colored(q{    |     |   ╭}, $color) . $info_lines[$i++];
-        $text .= colored(q{    |-ᱛ ᱛ-|   │}, $color) . $info_lines[$i++];
+        $text .= colored(q{    |-Ο Ο-|   │}, $color) . $info_lines[$i++];
         $text .= colored(q{   Ͼ   ∪   Ͽ  │}, $color) . $info_lines[$i++];
         $text .= colored(q{    |     |   ╯}, $color) . $info_lines[$i++];
         $text .= colored(q{   ˏ`-.ŏ.-´ˎ   }, $color) . $info_lines[$i++];
