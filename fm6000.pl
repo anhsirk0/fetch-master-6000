@@ -91,7 +91,7 @@ sub packages {
     # for arch based
     my $pacs = `pacman -Q 2>/dev/null`;
     # for debian based
-    unless ($pacs) { $pacs = `dpkg-query -f '\n' -W 2>/dev/null` }
+    unless ($pacs) { $pacs = `dpkg-query -l | grep "^ii"` }
     # for fedora
     unless ($pacs) { $pacs = `yum list installed 2>/dev/null` }
     # for BSD
