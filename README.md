@@ -18,7 +18,7 @@ download it make it executable and put somewhere in your $PATH
 
 ## Via install script
 ```bash
-curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh | bash
+bash -c "$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)"
 ```
 
 ## Manually
