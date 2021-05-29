@@ -59,6 +59,7 @@ sub get_os {
     unless ($os) { $os = `uname -s 2>/dev/null` }
     unless ($os) { $os = "Unknown" }
     for($os){
+        s/ Linux//i;
         s/"//g;
         chomp;
     }
@@ -66,9 +67,9 @@ sub get_os {
 }
 
 sub get_de {
-    my $de = $ENV{XDG_CURRENT_DESKTOP};
+    my $de = $ENV{DESKTOP_SESSION};
     unless ($de) { $de = $ENV{XDG_SESSION_DESKTOP} }
-    unless ($de) { $de = $ENV{DESKTOP_SESSION} }
+    unless ($de) { $de = $ENV{XDG_CURRENT_DESKTOP} }
     unless ($de) { $de = "Unknown" }
     return $de;
 }
