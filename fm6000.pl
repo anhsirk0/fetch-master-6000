@@ -101,7 +101,9 @@ sub packages {
     unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/* 2>/dev/null` }
     # for venon linux
     unless ($pacs) { $pacs = `scratch installed | cat 2>/dev/null` }
-    
+    # for solus
+    unless ($pacs) { $pacs = `eopkg list-installed 2>/dev/null` }
+
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" }
     return $count;
