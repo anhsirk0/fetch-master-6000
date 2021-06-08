@@ -100,7 +100,7 @@ sub packages {
     # for gentoo based
     unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/* 2>/dev/null` }
     # for venon linux
-    unless ($pacs) { $pacs = `scratch installed | cat` }
+    unless ($pacs) { $pacs = `scratch installed | cat 2>/dev/null` }
     
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" }
