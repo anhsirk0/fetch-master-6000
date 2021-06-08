@@ -141,9 +141,10 @@ fm6000 -r
 ```
 
 ## Troubleshooting
-If your distro is not {arch, debian, fedora, freeBSD} based fetch-master-6000 wont be able to detect number of packages
-In that case you have to specify number of packages yourself
-For example:
+If your distro is not {arch, debian, fedora, freeBSD, gentoo, venom, solus} based fetch-master-6000 wont be able to detect number of packages
+In that case you have to specify number of packages yourself  
+*Solus is already supported* 
+For example:  
 On Solus (eopkg)
 command to list all istalled packages is:
 ```bash
