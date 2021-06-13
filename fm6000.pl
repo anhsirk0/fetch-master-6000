@@ -248,7 +248,7 @@ sub get_info {
     );
 
     my %pac = (
-        'placeholder' => 'PACKAGE',
+        'placeholder' => 'PACKAGES',
         'color' => 'cyan',
         'name' => $pac,
     );
