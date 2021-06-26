@@ -37,6 +37,7 @@ if [[ -f "fm6000" && -s "fm6000" ]]; then
     else
         echo "Script not moved"
         ./fm6000
+        exit
     fi
     echo "Fetch-master-6000 is succesfully installed"
 else
