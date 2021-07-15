@@ -5,7 +5,8 @@
 
 ASCII art of Dilbert is taken from the [Kakoune text editor](https://github.com/mawww/kakoune)  
 ASCII art of Alice, PHB is taken from [Christopher Johnson's collection](https://asciiart.website/index.php?art=comics/dilbert)  
-ASCII art of wolf is taken from [asciiart.eu](https://www.asciiart.eu/animals/wolves)  
+ASCII art of the Wolf is taken from [asciiart.eu](https://www.asciiart.eu/animals/wolves)  
+ASCII art of the Astronaut is taken from [this site](https://pastebin.com/T7tunPCa)  
 
 ## Screenshots
 ![all1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all1.png)
@@ -69,6 +70,11 @@ fm6000 -f wolf.txt
 kak wolf.txt
 ```
 ![rawwolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/rawwolf.png)  
+
+```bash
+fm6000 -f astronnaut.txt -c cyan
+```
+![astronnaut.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/astronnaut.png)
 
 ```bash
 fm6000 -f arch_logo.txt
