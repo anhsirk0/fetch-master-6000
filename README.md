@@ -72,9 +72,9 @@ kak wolf.txt
 ![rawwolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/rawwolf.png)  
 
 ```bash
-fm6000 -f astronnaut.txt -c cyan
+fm6000 -f astronaut.txt -c cyan
 ```
-![astronnaut.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/astronnaut.png)
+![astronaut.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/astronaut.png)
 
 ```bash
 fm6000 -f arch_logo.txt
