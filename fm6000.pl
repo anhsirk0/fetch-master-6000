@@ -103,7 +103,9 @@ sub packages {
     unless ($pacs) { $pacs = `ls -d /var/lib/scratchpkg/db/* 2>/dev/null` }
     # for solus
     unless ($pacs) { $pacs = `eopkg list-installed 2>/dev/null` }
-
+    # for void linux
+    unless ($pacs) { $pacs = `xbps-query -l` }
+    
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" }
     return $count;
