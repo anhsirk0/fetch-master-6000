@@ -104,7 +104,7 @@ sub packages {
     # for solus
     unless ($pacs) { $pacs = `eopkg list-installed 2>/dev/null` }
     # for void linux
-    unless ($pacs) { $pacs = `xbps-query -l` }
+    unless ($pacs) { $pacs = `xbps-query -l 2>/dev/null` }
     
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" }
