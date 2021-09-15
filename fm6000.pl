@@ -60,7 +60,7 @@ sub get_os {
     unless ($os) { $os = "Unknown" }
     for($os){
         s/ Linux//i;
-        s/"//g;
+        s/"|'//g;
         chomp;
     }
     return $os;
