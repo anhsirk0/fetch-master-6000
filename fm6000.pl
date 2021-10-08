@@ -102,7 +102,7 @@ sub packages {
     # for venon linux
     unless ($pacs) { $pacs = `ls -d /var/lib/scratchpkg/db/* 2>/dev/null` }
     # for solus
-    unless ($pacs) { $pacs = `eopkg list-installed 2>/dev/null` }
+    unless ($pacs) { $pacs = `ls /var/lib/eopkg/package/ 2>/dev/null` }
     # for void linux
     unless ($pacs) { $pacs = `xbps-query -l 2>/dev/null` }
     
