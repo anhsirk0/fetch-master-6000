@@ -40,25 +40,26 @@ my @wm = (
 );
 
 sub get_os {
-    my $os;
-    my $os_release_file = "/etc/os-release";
-    if (-f $os_release_file) {
-        open(FH, "<", $os_release_file);
-        while(<FH>) {
-            if ($_ =~ m/^NAME/) {
-                $os = $_;
-                $os =~ s/NAME=//;
-                last;
+    my $os = `lsb_release -si 2>/dev/null`;
+    unless ($os) {
+        my $os_release_file = "/etc/os-release";
+        if (-f $os_release_file) {
+            open(FH, "<", $os_release_file);
+            while(<FH>) {
+                if ($_ =~ m/^NAME/) {
+                    $os = $_;
+                    $os =~ s/NAME=//;
+                    last;
+                }
             }
         }
     }
-    unless ($os) { $os = `lsb_release -sd 2>/dev/null` }
     # for gentoo
     unless ($os) { $os = `[ -x "/etc/portage" ] && echo "Gentoo" 2>/dev/null` }
     # for BSD
     unless ($os) { $os = `uname -s 2>/dev/null` }
     unless ($os) { $os = "Unknown" }
-    for($os){
+    for($os) {
         s/ Linux//i;
         s/"|'//g;
         chomp;
