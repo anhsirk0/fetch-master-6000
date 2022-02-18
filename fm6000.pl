@@ -106,7 +106,9 @@ sub packages {
     unless ($pacs) { $pacs = `ls /var/lib/eopkg/package/ 2>/dev/null` }
     # for void linux
     unless ($pacs) { $pacs = `xbps-query -l 2>/dev/null` }
-    
+    # for nixos
+    unless ($pacs) { $pacs = `nix-store -qR /run/current-system/sw/ 2>/dev/null && nix-store -qR ~/.nix-profile/ 2>/dev/null` }
+
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" }
     return $count;
