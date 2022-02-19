@@ -36,7 +36,7 @@ my @wm = (
     'beryl', 'subtle', 'e16', 'enlightenment', 'sawfish', 'emerald', 'monsterwm',
     'dminiwm', 'compiz', 'Finder','herbstluftwm', 'howm', 'notion', 'bspwm', '2bwm',
     'echinus', 'swm', 'budgie-wm', 'dtwm', '9wm', 'chromeos-wm', 'deepin-wm', 'sway',
-    'mwm', 'instawm', 'qtile'
+    'mwm', 'instawm', 'qtile', 'leftwm', 'none+leftwm'
 );
 
 sub get_os {
