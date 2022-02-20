@@ -36,7 +36,7 @@ my @wm = (
     'beryl', 'subtle', 'e16', 'enlightenment', 'sawfish', 'emerald', 'monsterwm',
     'dminiwm', 'compiz', 'Finder','herbstluftwm', 'howm', 'notion', 'bspwm', '2bwm',
     'echinus', 'swm', 'budgie-wm', 'dtwm', '9wm', 'chromeos-wm', 'deepin-wm', 'sway',
-    'mwm', 'instawm', 'qtile'
+    'mwm', 'instawm', 'qtile', 'leftwm', 'none+leftwm'
 );
 
 sub get_os {
@@ -106,7 +106,9 @@ sub packages {
     unless ($pacs) { $pacs = `ls /var/lib/eopkg/package/ 2>/dev/null` }
     # for void linux
     unless ($pacs) { $pacs = `xbps-query -l 2>/dev/null` }
-    
+    # for nixos
+    unless ($pacs) { $pacs = `nix-store -qR /run/current-system/sw/ 2>/dev/null && nix-store -qR ~/.nix-profile/ 2>/dev/null` }
+
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" }
     return $count;
