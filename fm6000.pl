@@ -39,13 +39,8 @@ my @wm = (
     'beryl', 'subtle', 'e16', 'enlightenment', 'sawfish', 'emerald', 'monsterwm',
     'dminiwm', 'compiz', 'Finder','herbstluftwm', 'howm', 'notion', 'bspwm', '2bwm',
     'echinus', 'swm', 'budgie-wm', 'dtwm', '9wm', 'chromeos-wm', 'deepin-wm', 'sway',
-<<<<<<< HEAD
-    'mwm', 'instawm', 'qtile'
-    );
-=======
     'mwm', 'instawm', 'qtile', 'leftwm', 'none+leftwm'
 );
->>>>>>> master
 
 sub get_os {
     my $os = `lsb_release -si 2>/dev/null`;
