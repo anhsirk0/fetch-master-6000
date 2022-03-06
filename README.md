@@ -85,10 +85,11 @@ fm6000 -f arch_logo.txt
 every line should be of same length (use spaces if needed)  
 atleast 10 lines is required (use empty spaces lines if needed)
 
-## Colors
-![color1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/color1.png)
-
-![color2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/color2.png)
+## Say
+```bash
+fm6000 -say "Hello world!"
+```
+![say.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/say.png)
 
 ## Geometry
 ![geometry.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/geometry.png)
