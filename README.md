@@ -17,7 +17,8 @@ ASCII art of the Astronaut is taken from [this site](https://pastebin.com/T7tunP
 Its just a perl script
 download it make it executable and put somewhere in your $PATH
 
-**For Gentoo** refer to the [XDream's Repository](https://github.com/XDream8/dreamsrepo)
+**For Gentoo** refer to the [XDream's Repository](https://github.com/XDream8/dreamsrepo)  
+**For Arch users** its available in the AUR as `fm6000` 
 
 ## Via install script
 ```bash
