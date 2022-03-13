@@ -155,7 +155,7 @@ In that case you have to specify number of packages yourself
 For example:  
 On Solus (eopkg)
 command to list all istalled packages is:
-> eopkg list-installed is because its prints a lot of info, use `ls /var/lib/eopkg/package` instead
+> eopkg list-installed is slow because its prints a lot of info, use `ls /var/lib/eopkg/package` instead
 ```bash
 eopkg list-installed
 ```
