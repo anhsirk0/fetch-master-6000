@@ -155,6 +155,7 @@ In that case you have to specify number of packages yourself
 For example:  
 On Solus (eopkg)
 command to list all istalled packages is:
+> eopkg list-installed is because its prints a lot of info, use `ls /var/lib/eopkg/package` instead
 ```bash
 eopkg list-installed
 ```
@@ -174,6 +175,6 @@ Similiarly for other distros
 ```bash
 fm6000 -p $(pacman -Q | wc -l)
 ```
-output
-![out2.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/out2.png)
 
+### Can't locate experimental.pm
+fm6000 uses experimental module to do a smartmatch for WMs .This module is pre-installed on most of the distros, if for some reason its not present. Use your package manager to install `perl-experimental` module.
