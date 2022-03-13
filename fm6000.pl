@@ -40,7 +40,7 @@ my @wm = (
     'dminiwm', 'compiz', 'Finder','herbstluftwm', 'howm', 'notion', 'bspwm', '2bwm',
     'echinus', 'swm', 'budgie-wm', 'dtwm', '9wm', 'chromeos-wm', 'deepin-wm', 'sway',
     'mwm', 'instawm', 'qtile', 'leftwm', 'none+leftwm'
-);
+    );
 
 sub get_os {
     my $os = `lsb_release -si 2>/dev/null`;
@@ -177,7 +177,7 @@ sub get_info {
     my $de_placeholder = 'DE';
     my $vnstat = '-1';
     my $usg;    
-    
+
     GetOptions (
         "help" => \$help,
         "os=s" => \$os,
@@ -207,6 +207,10 @@ sub get_info {
         exit;
     }
 
+    if ($color eq "random") {
+        $color = @colors[int(rand scalar @colors)];
+    }
+
     if ($say) {
         my $total_length = $length + $gap + 7 - $margin; # total length of the text box
         my $total_chars =  length($say) + 10 * $margin; # including margin on each line
@@ -214,11 +218,11 @@ sub get_info {
         if ($total_chars / $total_length > 8) {
             $length = $length + ceil($total_chars / $total_length)
         }
-        
+
         $Text::Wrap::columns = $length + $gap + 7 - $margin;
         my @new_info;
         @info = split "\n", wrap("" , "", $say);
-        
+
         my $number_of_lines = scalar @info;
         for my $i (0 .. ($number_of_lines - 1)) {
             $new_info[$i] = " " x $margin . $info[$i] . " " x ($length + $gap + 7 - length $info[$i]);
@@ -230,7 +234,7 @@ sub get_info {
         }
         return @new_info;
     }      
-    
+
     unless ($os) { $os = get_os(); }
     unless ($ke) { $ke = kernel(); }
     unless ($de) { $de = get_de(); }
@@ -248,10 +252,6 @@ sub get_info {
 
     if ($vnstat eq '') {
         $vnstat = usage();
-    }
-
-    if ($color eq "random") {
-        $color = @colors[int(rand scalar @colors)];
     }
 
     my %usg = (
