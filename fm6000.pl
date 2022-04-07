@@ -120,26 +120,16 @@ sub packages {
 }
 
 sub uptime {
-    my $time = `uptime`;
-    for($time) {
-        s/.*up\s+//;
-        s/,\s+[0-9]+ user.*//;
-        s/ //g;
-        s/,/:/g;
-        s/[a-z]+//g;
-        chomp
-    }
+    my $uptime = `uptime -s`;
+    my $boot = `date -d"$uptime" +%s`;
+    my $now = time();
+    my $seconds = $now - $boot;
 
-    my @time = reverse(split ":", $time);
-    if (scalar @time == 2) {
-        $time[0] =~ s/^0//; # remove starting '0' (01 -> 1)
-        $time = $time[1]. "h, " . $time[0] . "m";
-    } elsif (scalar @time == 3) {
-        $time[0] =~ s/^0//; # remove starting '0' (01 -> 1)
-        $time = $time[2]. "d, " . $time[1]. "h, " . $time[0] . "m";
-    } else {
-        $time .= "m";
-    }
+    my $d = int($seconds / 60 / 60 / 24);
+    my $h = $seconds / 60 / 60 % 24;
+    my $m = $seconds / 60 % 60;
+    my $time = $d . "d, " . $h . "h, " . $m . "m";
+    $time =~ s/0., //g;
     return $time;
 }
 
