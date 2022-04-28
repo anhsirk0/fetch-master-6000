@@ -24,7 +24,7 @@ if [ -f "fm6000.pl" ]; then
     cp fm6000.pl fm6000
 else
     url="https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl"
-    if [[ $(command -v curl) ]]; then
+    if [ "$(command -v curl)" ]; then
         printf '%b\n' "${BLUE}Downloading the script${NC}"
         curl $url -o fm6000
     else
