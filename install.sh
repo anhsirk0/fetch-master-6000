@@ -58,7 +58,6 @@ if [ -f "fm6000" ] && [ -s "fm6000" ]; then
         printf '%b\n' "${BLUE}Moving fm6000 to $install_path${NC}"
 				printf '%b' "${CYAN}"
 				$sudo mv -v fm6000 $install_path || ( printf '%b\n' "${RED}error: $sudo failed${NC}"; exit; exit 1 ) # double exit. first one exits the function
-				printf '%b\n' "${NC}"
 				printf '%b\n' "${GREEN}Fetch-master-6000 is successfully installed${NC}"
 				exit 0
     else
