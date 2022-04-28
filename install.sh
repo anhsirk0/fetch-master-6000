@@ -40,8 +40,8 @@ if [ -f "fm6000" ] && [ -s "fm6000" ]; then
     chmod +x fm6000 && printf '%b\n' "${BLUE}Making the script executable : ${GREEN}done"
     require_text="root required"
 
-		if [ -x $install_path ]; then
-          if [ $root = 0 ]; then
+    if [ -x $install_path ]; then
+        if [ $root = 0 ]; then
           require_text="root not required"
           sudo=
         fi
