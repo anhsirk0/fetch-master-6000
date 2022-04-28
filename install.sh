@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-
-
 [ -z "$install_path" ] && install_path=$HOME/.local/bin
 [ -z "$root" ] && root=0
 
@@ -41,7 +39,8 @@ fi
 if [ -f "fm6000" ] && [ -s "fm6000" ]; then
     chmod +x fm6000 && printf '%b\n' "${BLUE}Making the script executable : ${GREEN}done"
 		require_text="root required"
-    if [ -x $install_path ]; then
+
+		if [ -x $install_path ]; then
 				if [ $root = 0 ]; then
 					require_text="root not required"
 					sudo=
@@ -55,7 +54,7 @@ if [ -f "fm6000" ] && [ -s "fm6000" ]; then
     fi
 
     if [ "${ans}" = "y" ]; then
-        printf '%b\n' "${BLUE}Moving fm6000 to $install_path${NC}"
+				printf '%b\n' "${BLUE}Moving fm6000 to $install_path${NC}"
 				printf '%b' "${CYAN}"
 				$sudo mv -v fm6000 $install_path || ( printf '%b\n' "${RED}error: $sudo failed${NC}"; exit; exit 1 ) # double exit. first one exits the function
 				printf '%b\n' "${GREEN}Fetch-master-6000 is successfully installed${NC}"
