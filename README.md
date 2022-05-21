@@ -155,6 +155,15 @@ or
 fm6000 -r
 ```
 
+For random ascii from a directory use:
+```bash
+fm6000 --random-dir "directory_name"
+```
+or
+```bash
+fm6000 -rd "directory_name"
+```
+
 ## Troubleshooting
 If your distro is not {arch, debian, fedora, freeBSD, gentoo, venom, solus} based fetch-master-6000 wont be able to detect number of packages
 In that case you have to specify number of packages yourself
