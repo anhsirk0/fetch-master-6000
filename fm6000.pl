@@ -23,6 +23,7 @@ my $asok;
 my $help;
 my $not_de;
 my $random;
+my $random_dir;
 my $ascii_file;
 my $say;
 
@@ -156,6 +157,16 @@ sub format_info {
     return $text;
 }
 
+sub get_random_file {
+    if (-d $random_dir) {
+	my @files = glob($random_dir . "/*");
+	return @files[int(rand scalar @files)]
+    } else {
+	print "Please provide a Directory\n";
+	exit;
+    }
+}
+
 sub get_info {
     my @info;
     my $os;
@@ -188,6 +199,7 @@ sub get_info {
         "phb" => \$phb,
         "asok" => \$asok,
         "random" => \$random,
+        "random-dir|rd:s" => \$random_dir,
         "file=s" => \$ascii_file,
         "say=s" => \$say,
         );
@@ -325,6 +337,11 @@ sub main {
     }
     unshift(@info_lines, colored(q{╭} . '─' x ($length + $margin + $gap + 7) . '╮', $color));
     push(@info_lines, colored(q{╰} . '─' x ($length + $margin + $gap + 7) . '╯', $color));
+
+    # select random file from given Directory
+    if ($random_dir) { $ascii_file = get_random_file() }
+
+    # read ascii file
     my $i = 0;
     my $text = "\n";
     if ($ascii_file) {
