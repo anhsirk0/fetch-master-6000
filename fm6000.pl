@@ -430,29 +430,31 @@ sub main {
 }
 
 sub print_help {
-    print "usage: fm6000 [options]\n\n";
-    print "-c, --color=STR    Base color\n";
-    print "-w, --wally    Display Wally \n";
-    print "-dog, --dogbert    Display Dogbert \n";
-    print "-al, --alice    Display Alice \n";
-    print "-phb, --phb    Display Pointy haired Boss \n";
-    print "-as, --asok    Display Asok \n";
-    print "-r, --random    Display Random Art \n";
-    print "-f, --file    Display art from file\n";
-    print "-n, --not_de    To use 'WM' instead of 'DE'\n";
-    print "-o, --os=STR    OS name\n";
-    print "-k or --kernel=STR    Kernel version\n";
-    print "-de or --de=STR    Desktop environment name\n";
-    print "-s or --shell=STR    Shell name\n";
-    print "-u or --uptime=STR    Uptime\n";
-    print "-pa or --package=INT    Number of packages\n";
-    print "-v or --vnstat=STR    Use vnstat instead of kernel\n";
-    print "-m or --margin=INT    Spaces on the left side of info\n";
-    print "-g or --gap=INT    Spaces between info and info_value\n";
-    print "-l or --length=INT    Length of the board ( > 14)\n\n";
-    print "available colors: \n";
-    print join(", ", splice(@colors, 0, 7)) . ", random\n";
-    print join(", ", @colors) . "\n";
+    my $help_text = "usage: fm6000 [options]\n\n";
+    $help_text .= "-c, --color=STR    Base color\n";
+    $help_text .= "-w, --wally    Display Wally \n";
+    $help_text .= "-dog, --dogbert    Display Dogbert \n";
+    $help_text .= "-al, --alice    Display Alice \n";
+    $help_text .= "-phb, --phb    Display Pointy haired Boss \n";
+    $help_text .= "-as, --asok    Display Asok \n";
+    $help_text .= "-r, --random    Display Random Art \n";
+    $help_text .= "-rd, --random-dir=STR    Directory for random ascii art \n";
+    $help_text .= "-f, --file    Display art from file\n";
+    $help_text .= "-nd, --not_de    To use 'WM' instead of 'DE'\n";
+    $help_text .= "-o, --os=STR    OS name\n";
+    $help_text .= "-k or --kernel=STR    Kernel version\n";
+    $help_text .= "-d or --de=STR    Desktop environment name\n";
+    $help_text .= "-sh or --shell=STR    Shell name\n";
+    $help_text .= "-u or --uptime=STR    Uptime\n";
+    $help_text .= "-p or --package=INT    Number of packages\n";
+    $help_text .= "-v or --vnstat=STR    Use vnstat instead of kernel\n";
+    $help_text .= "-m or --margin=INT    Spaces on the left side of info\n";
+    $help_text .= "-g or --gap=INT    Spaces between info and info_value\n";
+    $help_text .= "-l or --length=INT    Length of the board ( > 14)\n\n";
+    $help_text .= "available colors: \n";
+    $help_text .= join(", ", splice(@colors, 0, 7)) . ", random\n";
+    $help_text .= join(", ", @colors) . "\n";
+    print $help_text;
 }
 
 main();
