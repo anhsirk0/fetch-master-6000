@@ -259,7 +259,7 @@ sub get_info {
     my %usg = (
         'placeholder' => 'VNSTAT',
         'color' => 'magenta',
-        'name' => $vnstat
+        'name' => $vnstat,
         );
 
     my %os = (
