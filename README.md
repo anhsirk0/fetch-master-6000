@@ -1,7 +1,6 @@
 # Fetch-master 6000
 
-## Simple fetching tool
-### Works on Linux & BSD
+## Simple dilbert themed fetching tool for Linux and BSD.
 
 ASCII art of Dilbert is taken from the [Kakoune text editor](https://github.com/mawww/kakoune)
 ASCII art of Alice, PHB is taken from [Christopher Johnson's collection](https://asciiart.website/index.php?art=comics/dilbert)
@@ -71,20 +70,6 @@ bash fm6000
 
 ## Displaying custom ASCII from file
 ```bash
-fm6000 -f wolf.txt
-```
-![wolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/wolf.png)
-```bash
-kak wolf.txt
-```
-![rawwolf.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/rawwolf.png)
-
-```bash
-fm6000 -f astronaut.txt -c cyan
-```
-![astronaut.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/astronaut.png)
-
-```bash
 fm6000 -f arch_logo.txt
 ```
 ![arch_logo.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/arch_logo.png)
@@ -115,20 +100,16 @@ fm6000 -say "Hello world!"
 
 **-o** or **--os** for os
 **-k** or **--kernel** for kernel
-**-de** or **--de** for desktop environment
-**-s** or **--shell** for shell
+**-d** or **--de** for desktop environment
+**-sh** or **--shell** for shell
 **-u** or **--uptime** for uptime
-**-pa** or **--package** for package count
-**-n** or **--not_de** to use 'WM' instead of 'DE'
+**-p** or **--package** for package count
+**-nd** or **--not_de** to use 'WM' instead of 'DE'
 **-v** or **--vnstat** to use vnstat instead of kernel
 
 **-m** or **--margin** Space on the left side of info
 **-g** or **--gap** Spaces between info and info_value
 **-l** or **--length** Length of the board (should be greater than 14)
-
-> option can be of single character or more
-> for ex: -help can be used via -h -he -hel -help as long as it avoids ambiguity
-> for ex: -d is ambiguous (-dogbert , -de) so atleast 2 characters should be specified
 
 ## Available colors
 black  red  green  yellow  blue  magenta  cyan  white random
@@ -137,16 +118,16 @@ bright_black  bright_red      bright_green  bright_yellow
 bright_blue   bright_magenta  bright_cyan   bright_white
 
 ## Randomization
-For random color use:
+For random color:
 ```bash
-fm6000 -color random
+fm6000 -color "random"
 ```
 or
 ```bash
-fm6000 -c random
+fm6000 -c "random"
 ```
 
-For random character use:
+For random character:
 ```bash
 fm6000 -random
 ```
@@ -155,7 +136,7 @@ or
 fm6000 -r
 ```
 
-For random ascii from a directory use:
+For random ascii from a directory:
 ```bash
 fm6000 --random-dir "directory_name"
 ```
@@ -166,10 +147,10 @@ fm6000 -rd "directory_name"
 
 ## Troubleshooting
 If your distro is not {arch, debian, fedora, freeBSD, gentoo, venom, solus} based fetch-master-6000 wont be able to detect number of packages
-In that case you have to specify number of packages yourself
-*Solus is already supported*
+In that case you have to specify number of packages yourself  
 For example:
 On Solus (eopkg)
+*Solus is already supported*
 command to list all istalled packages is:
 > eopkg list-installed is slow because its prints a lot of info, use `ls /var/lib/eopkg/package` instead
 ```bash
