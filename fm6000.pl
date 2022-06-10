@@ -28,9 +28,9 @@ my $ascii_file;
 my $say;
 
 my @colors = (
-    'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
-    'bright_red', 'bright_green', 'bright_yellow',
-    'bright_blue', 'bright_magenta', 'bright_cyan', 'bright_white'
+    'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'black',
+    'bright_red', 'bright_green', 'bright_yellow', 'bright_blue',
+    'bright_magenta', 'bright_cyan', 'bright_white', 'random'
     );
 
 my @wm = (
@@ -430,30 +430,31 @@ sub main {
 }
 
 sub print_help {
-    my $help_text = "usage: fm6000 [options]\n\n";
-    $help_text .= "-c, --color=STR    Base color\n";
-    $help_text .= "-w, --wally    Display Wally \n";
-    $help_text .= "-dog, --dogbert    Display Dogbert \n";
-    $help_text .= "-al, --alice    Display Alice \n";
-    $help_text .= "-phb, --phb    Display Pointy haired Boss \n";
-    $help_text .= "-as, --asok    Display Asok \n";
-    $help_text .= "-r, --random    Display Random Art \n";
-    $help_text .= "-rd, --random-dir=STR    Directory for random ascii art \n";
-    $help_text .= "-f, --file    Display art from file\n";
-    $help_text .= "-nd, --not_de    To use 'WM' instead of 'DE'\n";
-    $help_text .= "-o, --os=STR    OS name\n";
-    $help_text .= "-k or --kernel=STR    Kernel version\n";
-    $help_text .= "-d or --de=STR    Desktop environment name\n";
-    $help_text .= "-sh or --shell=STR    Shell name\n";
-    $help_text .= "-u or --uptime=STR    Uptime\n";
-    $help_text .= "-p or --package=INT    Number of packages\n";
-    $help_text .= "-v or --vnstat=STR    Use vnstat instead of kernel\n";
-    $help_text .= "-m or --margin=INT    Spaces on the left side of info\n";
-    $help_text .= "-g or --gap=INT    Spaces between info and info_value\n";
-    $help_text .= "-l or --length=INT    Length of the board ( > 14)\n\n";
-    $help_text .= "available colors: \n";
-    $help_text .= join(", ", splice(@colors, 0, 7)) . ", random\n";
-    $help_text .= join(", ", @colors) . "\n";
+    my $help_text = qq{usage: fm6000 [options]\n
+    -c, --color=STR \t\t Base color
+    -w, --wally \t\t Display Wally
+    -dog, --dogbert \t\t Display Dogbert
+    -al, --alice \t\t Display Alice
+    -phb, --phb \t\t Display Pointy haired Boss
+    -as, --asok \t\t Display Asok
+    -nd, --not_de \t\t To use 'WM' instead of 'DE'
+    -o, --os=STR \t\t OS name
+    -k, --kernel=STR \t\t Kernel version
+    -d, --de=STR \t\t Desktop environment name
+    -sh, --shell=STR \t\t Shell name
+    -u, --uptime=STR \t\t Uptime
+    -p, --package=INT \t\t Number of packages
+    -v, --vnstat=STR \t\t Use vnstat instead of kernel
+    -f, --file \t\t\t Display art from file
+    -r, --random \t\t Display Random Art
+    -rd, --random-dir=STR \t Directory for random ascii art
+    -m, --margin=INT \t\t Spaces on the left side of info
+    -g, --gap=INT \t\t Spaces between info and info_value
+    -l, --length=INT \t\t Length of the board ( > 14)
+    -h, --help \t\t\t Print this help message\n\n};
+    $help_text .= "available colors:\n    " . join(", ", splice(@colors, 0, 8));
+    $help_text .= "\n    " . join(", ", splice(@colors, 0, 4));
+    $help_text .= "\n    " . join(", ", @colors) . "\n";
     print $help_text;
 }
 
