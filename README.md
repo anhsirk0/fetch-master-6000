@@ -88,28 +88,28 @@ fm6000 -say "Hello world!"
 ![geometry.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/geometry.png)
 
 ## Available Options
-**-h** or **--help** for help
-**-c** or **--color** for base color
-**-w** or **--wally** display Wally
-**-dog** or **--dogbert** display Dogbert
-**-al** or **--alice** display Alice
-**-phb** or **--phb** display Pointy Haired Boss
-**-as** or **--asok** display Asok
-**-r** or **--random** display Random art
-**-f** or **--file** display ascii art from file
-
-**-o** or **--os** for os
-**-k** or **--kernel** for kernel
-**-d** or **--de** for desktop environment
-**-sh** or **--shell** for shell
-**-u** or **--uptime** for uptime
-**-p** or **--package** for package count
-**-nd** or **--not_de** to use 'WM' instead of 'DE'
-**-v** or **--vnstat** to use vnstat instead of kernel
-
-**-m** or **--margin** Space on the left side of info
-**-g** or **--gap** Spaces between info and info_value
-**-l** or **--length** Length of the board (should be greater than 14)
+**-h** or **--help** for help  
+**-c** or **--color** for base color  
+**-w** or **--wally** display Wally  
+**-dog** or **--dogbert** display Dogbert  
+**-al** or **--alice** display Alice  
+**-phb** or **--phb** display Pointy Haired Boss  
+**-as** or **--asok** display Asok  
+**-r** or **--random** display Random art  
+**-f** or **--file** display ascii art from file  
+  
+**-o** or **--os** for os  
+**-k** or **--kernel** for kernel  
+**-d** or **--de** for desktop environment  
+**-sh** or **--shell** for shell  
+**-u** or **--uptime** for uptime  
+**-p** or **--package** for package count  
+**-nd** or **--not_de** to use 'WM' instead of 'DE'  
+**-v** or **--vnstat** to use vnstat instead of kernel  
+  
+**-m** or **--margin** Space on the left side of info  
+**-g** or **--gap** Spaces between info and info_value  
+**-l** or **--length** Length of the board (should be greater than 14)  
 
 ## Available colors
 black  red  green  yellow  blue  magenta  cyan  white random
