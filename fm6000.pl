@@ -458,6 +458,8 @@ sub print_help {
     -f, --file \t\t\t Display art from file
     -r, --random \t\t Display Random Art
     -rd, --random-dir=STR \t Directory for random ascii art
+    -s, --say=STR \t\t Say provided text instead of info
+    -sf, --say-file=STR \t Say text from a file instead of info
     -m, --margin=INT \t\t Spaces on the left side of info
     -g, --gap=INT \t\t Spaces between info and info_value
     -l, --length=INT \t\t Length of the board ( > 14)
