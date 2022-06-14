@@ -26,6 +26,7 @@ my $random;
 my $random_dir;
 my $ascii_file;
 my $say;
+my $say_file;
 
 my @colors = (
     'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'black',
@@ -177,7 +178,7 @@ sub get_info {
     my $pac;
     my $de_placeholder = 'DE';
     my $vnstat = '-1';
-    my $usg;    
+    my $usg;
 
     GetOptions (
         "help|h" => \$help,
@@ -202,6 +203,7 @@ sub get_info {
         "random-dir|rd=s" => \$random_dir,
         "file|f=s" => \$ascii_file,
         "say|s=s" => \$say,
+        "say-file|sf=s" => \$say_file,
         );
 
     if ($help) {
@@ -213,12 +215,19 @@ sub get_info {
         $color = @colors[int(rand scalar @colors)];
     }
 
+    if ($say_file) {
+        open (FH, "<", $say_file) or die "Unable to open $say_file";
+	while (<FH>) { $say .= $_ }
+	close(FH);
+	chomp $say;
+    }
+
     if ($say) {
         my $total_length = $length + $gap + 7 - $margin; # total length of the text box
         my $total_chars =  length($say) + 10 * $margin; # including margin on each line
 
         if ($total_chars / $total_length > 8) {
-            $length = $length + ceil($total_chars / $total_length)
+            $length = $length + ceil(1.6 * $total_chars / $total_length);
         }
 
         $Text::Wrap::columns = $length + $gap + 7 - $margin;
@@ -235,7 +244,7 @@ sub get_info {
             push(@new_info, " " x ($length + $gap + 7 + $margin));
         }
         return @new_info;
-    }      
+    }
 
     unless ($os) { $os = get_os(); }
     unless ($ke) { $ke = kernel(); }
@@ -347,6 +356,7 @@ sub main {
     if ($ascii_file) {
         open (FH, "<", $ascii_file) or die "Unable to open $ascii_file";
         chomp(my @ascii =  <FH>);
+	close(FH);
         my $offset = abs int(scalar @ascii / 2 - 5); # to keep info in middle
 
         for (my $i = 0; $i < scalar @ascii; $i++) {
