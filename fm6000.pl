@@ -285,7 +285,7 @@ sub get_info {
 
     my %de = (
         'placeholder' => $de_placeholder,
-        'color' => 'bright_red',
+        'color' => 'bright_magenta',
         'name' => $de,
         );
 
@@ -297,7 +297,7 @@ sub get_info {
 
     my %up = (
         'placeholder' => 'UPTIME',
-        'color' => 'bright_magenta',
+        'color' => 'magenta',
         'name' => $up,
         );
 
