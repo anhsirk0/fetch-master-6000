@@ -28,10 +28,10 @@ my $ascii_file;
 my $say;
 my $say_file;
 
-my @colors = (
+my @colors = ( # do not add 'random' here
     'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'black',
     'bright_red', 'bright_green', 'bright_yellow', 'bright_blue',
-    'bright_magenta', 'bright_cyan', 'bright_white', 'random'
+    'bright_magenta', 'bright_cyan', 'bright_white',
     );
 
 my @wm = (
