@@ -29,9 +29,9 @@ my $say;
 my $say_file;
 
 my @colors = ( # do not add 'random' here
-    'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'black',
+    'red', 'green', 'yellow', 'blue', 'magenta', 'cyan',
     'bright_red', 'bright_green', 'bright_yellow', 'bright_blue',
-    'bright_magenta', 'bright_cyan', 'bright_white',
+    'bright_magenta', 'bright_cyan',
     );
 
 my @wm = (
@@ -465,8 +465,7 @@ sub print_help {
     -l, --length=INT \t\t Length of the board ( > 14)
     -h, --help \t\t\t Print this help message\n\n};
     $help_text .= "available colors:\n    " . join(", ", splice(@colors, 0, 8));
-    $help_text .= "\n    " . join(", ", splice(@colors, 0, 4));
-    $help_text .= "\n    " . join(", ", @colors) . "\n";
+    $help_text .= "\n    " . join(", ", @colors) . ", random\n";
     print $help_text;
 }
 
