@@ -113,9 +113,9 @@ fm6000 -say "Hello world!"
 **-h** or **--help** Print this help message  
 
 ## Available colors
-black  red  green  yellow  blue  magenta  cyan  white random  
-bright_black  bright_red      bright_green  bright_yellow  
-bright_blue   bright_magenta  bright_cyan   bright_white
+black  red  green  yellow  blue  magenta  cyan  
+bright_black  bright_red  bright_green  bright_yellow  
+bright_blue   bright_magenta  bright_cyan random  
 
 ## Randomization
 For random color:
