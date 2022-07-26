@@ -39,24 +39,29 @@ fi
 if [ -f "fm6000" ] && [ -s "fm6000" ]; then
     chmod +x fm6000 && printf '%b\n' "${BLUE}Making the script executable : ${GREEN}done"
     require_text="root required"
+    ans="$1"
 
     if [ -x $install_path ]; then
         if [ $root = 0 ]; then
-          require_text="root not required"
-          sudo=
+            require_text="root not required"
+            sudo=
         fi
         printf '%b' "${YELLOW}"
-        read -p "Move the script to $install_path [$require_text]? (y/N) " ans
+        [ -n "${ans+x}" ] && read -p "Move the script to $install_path [$require_text]? (y/N) " ans
     else
         install_path=/usr/local/bin
         printf '%b' "${YELLOW}"
-        read -p "Move the script to $install_path [$require_text]? (y/N)  " ans
+        [ -n "${ans+x}" ] && read -p "Move the script to $install_path [$require_text]? (y/N)  " ans
     fi
 
-    if [ "${ans}" = "y" ]; then
+    if [ "${ans}" = "y" ] || [ "${ans}" = "-y" ]; then
         printf '%b\n' "${BLUE}Moving fm6000 to $install_path${NC}"
         printf '%b' "${CYAN}"
-			  $sudo mv -v fm6000 $install_path || ( printf '%b\n' "${RED}error: $sudo failed${NC}"; exit; exit 1 ) # double exit. first one exits the function
+        $sudo mv -v fm6000 $install_path || (
+            printf '%b\n' "${RED}error: $sudo failed${NC}"
+            exit
+            exit 1
+        ) # double exit. first one exits the function
         printf '%b\n' "${GREEN}Fetch-master-6000 is successfully installed${NC}"
         exit 0
     else
