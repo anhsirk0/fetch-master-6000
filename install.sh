@@ -47,11 +47,11 @@ if [ -f "fm6000" ] && [ -s "fm6000" ]; then
             sudo=
         fi
         printf '%b' "${YELLOW}"
-        [ -n "${ans+x}" ] && read -p "Move the script to $install_path [$require_text]? (y/N) " ans
+        [ -z "$ans" ] && read -p "Move the script to $install_path [$require_text]? (y/N) " ans
     else
         install_path=/usr/local/bin
         printf '%b' "${YELLOW}"
-        [ -n "${ans+x}" ] && read -p "Move the script to $install_path [$require_text]? (y/N)  " ans
+        [ -z "$ans" ] && read -p "Move the script to $install_path [$require_text]? (y/N)  " ans
     fi
 
     if [ "${ans}" = "y" ] || [ "${ans}" = "-y" ]; then
