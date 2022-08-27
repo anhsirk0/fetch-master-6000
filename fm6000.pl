@@ -91,7 +91,7 @@ sub get_de {
 	# checking WM through `ps`
 	my $ps_flags = ($os =~ /bsd/i) ? "x -c" : "-e";
 	my $ps = `ps $ps_flags`;
-	($de) = $ps =~ /(dwm|xmonad|2bwm|tinywm|fvwm|monsterwm|catwm|sowm)/i;
+	($de) = $ps =~ /(dwm|xmonad|2bwm|tinywm|fvwm|monsterwm|catwm|sowm|openbox)/i;
     }
     unless ($de) { $de = "Unknown" }
     return $de;
