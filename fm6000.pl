@@ -93,6 +93,11 @@ sub get_de {
 	my $ps = `ps $ps_flags`;
 	($de) = $ps =~ /(dwm|xmonad|2bwm|tinywm|fvwm|monsterwm|catwm|sowm|openbox)/i;
     }
+    unless ($de) {
+	# checking WM through `wmctrl`
+	my $wmctrl = `wmctrl -m`;
+	($de) = $wmctrl =~ /Name : (.*)/;
+    }
     unless ($de) { $de = "Unknown" }
     return $de;
 }
