@@ -268,7 +268,7 @@ sub get_info {
     }
 
     if ($vnstat eq '') {
-        $vnstat = usage();
+        $vnstat = get_usage();
     }
 
     my %usg = (
