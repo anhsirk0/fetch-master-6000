@@ -15,6 +15,17 @@ my $gap = 3;
 my $margin = 2;
 my $color = 'yellow';
 
+my @info;
+my $os;
+my $ke;
+my $de;
+my $sh;
+my $up;
+my $pac;
+my $de_placeholder = 'DE';
+my $vnstat = '-1';
+my $usg;
+
 my $wally;
 my $dogbert;
 my $alice;
@@ -76,17 +87,23 @@ sub get_de {
     my $de = $ENV{DESKTOP_SESSION};
     unless ($de) { $de = $ENV{XDG_SESSION_DESKTOP} }
     unless ($de) { $de = $ENV{XDG_CURRENT_DESKTOP} }
+    unless ($de) {
+	# checking WM through `ps`
+	my $ps_flags = ($os =~ /bsd/i) ? "x -c" : "-e";
+	my $ps = `ps $ps_flags`;
+	($de) = $ps =~ /(dwm|xmonad|2bwm|tinywm|fvwm|monsterwm|catwm|sowm)/i;
+    }
     unless ($de) { $de = "Unknown" }
     return $de;
 }
 
-sub shell {
+sub get_shell {
     my $sh = (split '/', $ENV{SHELL})[-1];
     unless ($sh) { $sh = "Unknown" }
     return $sh;
 }
 
-sub kernel {
+sub get_kernel {
     my $ke = `uname -r`;
     $ke =~ s/-.*//;
     chomp $ke;
@@ -94,7 +111,7 @@ sub kernel {
     return $ke;
 }
 
-sub packages {
+sub get_packages {
     # for debian based
     my $pacs = `dpkg-query -l 2>/dev/null | grep "^ii"`;
     # for arch based
@@ -121,7 +138,7 @@ sub packages {
     return $count;
 }
 
-sub uptime {
+sub get_uptime {
     my $uptime = `uptime -s`;
     my $boot = `date -d"$uptime" +%s`;
     my $now = time();
@@ -136,7 +153,7 @@ sub uptime {
 }
 
 # today's internet usage via vnstat
-sub usage {
+sub get_usage {
     my $data = `vnstat`;
     my $today;
     foreach my $line (split '\n', $data) {
@@ -169,17 +186,6 @@ sub get_random_file {
 }
 
 sub get_info {
-    my @info;
-    my $os;
-    my $ke;
-    my $de;
-    my $sh;
-    my $up;
-    my $pac;
-    my $de_placeholder = 'DE';
-    my $vnstat = '-1';
-    my $usg;
-
     GetOptions (
         "help|h" => \$help,
         "os|o=s" => \$os,
@@ -247,11 +253,11 @@ sub get_info {
     }
 
     unless ($os) { $os = get_os(); }
-    unless ($ke) { $ke = kernel(); }
+    unless ($ke) { $ke = get_kernel(); }
     unless ($de) { $de = get_de(); }
-    unless ($sh) { $sh = shell(); }
-    unless ($up) { $up = uptime(); }
-    unless ($pac) { $pac = packages(); }
+    unless ($sh) { $sh = get_shell(); }
+    unless ($up) { $up = get_uptime(); }
+    unless ($pac) { $pac = get_packages(); }
 
     if ($not_de) {
         $de_placeholder = 'WM';
