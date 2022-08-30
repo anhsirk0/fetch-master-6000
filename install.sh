@@ -38,18 +38,21 @@ for opt in $@ ; do
 		;;
 		--root|-r) root=1
 		;;
-		--install_path=*) install_path="${opt#*=}"
+		--no*root|-nr) root=0
+		;;
+		--install*path=*) install_path="${opt#*=}"
 		;;
 		--dry-run|-dr) dryrun=1
 		;;
-	*|-h)
+    *|-h)
 		[ -x "./install.sh" ] && prog="./install.sh" || prog="sh -c \"\$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)\""
 		out \
 "${RED}------${NC} ${CYAN}Fetch-Master-6000 install script${NC} ${RED}------${NC}
 ${YELLOW}Usage:${NC} $prog ${BLUE}<options>${NC}
 
  ${RED}--nocolors${NC},${RED} -nc    ${GREEN}Do not print colored text${NC}
- ${RED}--root${NC},${RED}     -r     ${GREEN}Force root${NC}
+ ${RED}--root${NC},${RED}     -r     ${GREEN}Use root privileges(it is automatically detected but still can be used)${NC}
+ ${RED}--noroot${NC},${RED}   -nr    ${GREEN}Do not use root privileges(it is automatically detected but still can be used)${NC}
  ${RED}--dry-run${NC},${RED}  -dr    ${GREEN}Dry run fm6000${NC}
 "
 		return 1
@@ -67,9 +70,13 @@ notset $install_path && {
 
 ## check if $install_path requires root group
 notset $install_path || {
+	[ ! -x "$install_path" ] && {
+    out "${RED}$install_path does not exist${NC}"
+		return 1
+	}
 	check_dep "stat" && {
 		if [ "$(stat -c "%G" $install_path)" = "root" ]; then
-			root=1
+			notset "$root" && root=1
 		fi
 	}
 }
