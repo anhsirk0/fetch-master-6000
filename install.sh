@@ -24,11 +24,11 @@ notset() {
 }
 
 check_dep() {
-	if [ "$(command -v $1)" ]; then return 0; else return 1; fi
+	if [ "$(command -v "$1")" ]; then return 0; else return 1; fi
 }
 
 ## get options
-for opt in $@; do
+for opt in "$@"; do
 	case $opt in
 	--nocolors | -nc)
 		# unset colors
@@ -51,7 +51,7 @@ for opt in $@; do
 	--headless | -y)
 		headless=1
 		;;
-	* | -h)
+	-h | *)
 		[ -x "./install.sh" ] && prog="./install.sh" || prog="sh -c \"\$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)\""
 		out \
 			"${RED}------${NC} ${CYAN}Fetch-Master-6000 install script${NC} ${RED}------${NC}
@@ -71,7 +71,7 @@ done
 # make script compatible with env variables
 
 ## set install_path
-notset $install_path && {
+notset "$install_path" && {
 	if [ -x "$HOME/.local/bin" ]; then
 		install_path=$HOME/.local/bin
 	elif [ -x "/usr/local/bin" ]; then
@@ -80,7 +80,7 @@ notset $install_path && {
 }
 
 ## check if $install_path requires root group
-notset $install_path || {
+notset "$install_path" || {
 	[ ! -x "$install_path" ] && {
 		out "${RED}$install_path does not exist${NC}"
 		return 1
@@ -96,7 +96,7 @@ notset $install_path || {
 [ "$root" = "0" ] && root=
 
 ## root text and else
-if notset $root; then
+if notset "$root"; then
 	require_text="root not required"
 	sudo=
 else
@@ -123,7 +123,7 @@ fi
 if ! notset "$root"; then
 	## if user is root do not set sudo
 	if [ "$(id -u)" -eq "0" ]; then
-		continue
+		sudo=
 	## check if doas is available
 	elif [ "$(command -v doas)" ]; then
 		sudo=doas
@@ -136,13 +136,14 @@ fi
 if [ -f "fm6000" ] && [ -s "fm6000" ]; then
 	chmod +x fm6000 && out "${BLUE}Making the script executable : ${GREEN}done"
 
+	# shellcheck disable=SC2086
 	if check_dep "find" && [ "$(find /usr/bin /usr/local/bin $HOME/.local/bin -type f -iname 'fm6000')" ]; then
 		out "${RED}it seems fm6000 is already installed but continuing anyway${NC}"
 	fi
 
-	notset "$dryrun" && {
-		printf '%b' "${YELLOW}"
-		notset "$headless" && read -p "Move the script to $install_path [$require_text]? (y/N) " ans
+	notset "$dryrun" && notset "$headless" && {
+		printf '%b' "${YELLOW}Move the script to $install_path [${RED}$require_text${YELLOW}]? (y/N) "
+		read -r ans
 	}
 
 	case $ans in
