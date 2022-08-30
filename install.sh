@@ -42,7 +42,7 @@ for opt in $@ ; do
 		;;
 		--install*path=*) install_path="${opt#*=}"
 		;;
-		--dry-run|-dr) dryrun=1
+		--dry*run|-dr) dryrun=1
 		;;
     *|-h)
 		[ -x "./install.sh" ] && prog="./install.sh" || prog="sh -c \"\$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)\""
@@ -98,7 +98,7 @@ if [ -f "fm6000.pl" ]; then
     cp fm6000.pl fm6000
 else
     url="https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl"
-    if [ "$(command -v curl)" ]; then
+    if check_dep "curl"; then
         out "${BLUE}Downloading the script${NC}"
         curl $url -o fm6000
     else
@@ -125,7 +125,7 @@ if [ -f "fm6000" ] && [ -s "fm6000" ]; then
     printf '%b' "${YELLOW}"
     notset "$dryrun" && read -p "Move the script to $install_path [$require_text]? (y/N) " ans
 
-		if notset "$dryrun"; then
+		if notset "$dryrun" && [ "${ans}" = "y" ] || [ "${ans}" = "Y" ]; then
         out "${BLUE}Moving fm6000 to $install_path${NC}"
         printf '%b' "${CYAN}"
         $sudo mv -v fm6000 $install_path || {

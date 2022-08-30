@@ -29,7 +29,9 @@ sh -c "$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/maste
 ```
 ### install script options
 - use --install-path option or set "install_path" variable(this variable defaults to $HOME/.local/bin, if it does not exist /usr/local/bin is used)
-- to define whether to use root or not set "root" variable(its value must be 1 or 0)(this variable defaults to 0 since $HOME/.local/bin is a user directory)
+- use --root(-r), --noroot(-nr) or set "root" variable(this is automatically detected via stat if "root" var is not set and options are not used)
+- use --dry-run(-dr) to dry run fm6000
+-
 ### example
 ```sh
 sh -c "$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)" -- --install-path=/usr/bin --root
