@@ -91,7 +91,7 @@ sub get_de {
 	# checking WM through `ps`
 	my $ps_flags = ($os =~ /bsd/i) ? "x -c" : "-e";
 	my $ps = `ps $ps_flags`;
-	($de) = $ps =~ /(dwm|xmonad|2bwm|tinywm|fvwm|monsterwm|catwm|sowm|openbox)/i;
+	($de) = $ps =~ /(dwm|xmonad|2bwm|tinywm|fvwm|monsterwm|catwm|sowm|openbox|sway)/i;
     }
     unless ($de) {
 	# checking WM through `wmctrl`
@@ -127,6 +127,8 @@ sub get_packages {
     unless ($pacs) { $pacs = `pkg info 2>/dev/null` }
     # for gentoo based
     unless ($pacs) { $pacs = `ls -d /var/db/pkg/*/* 2>/dev/null` }
+    # for KISS linux
+    unless ($pacs) { $pacs = `ls -d /var/db/kiss/installed/* 2>/dev/null` }
     # for venon linux
     unless ($pacs) { $pacs = `ls -d /var/lib/scratchpkg/db/* 2>/dev/null` }
     # for solus
