@@ -80,6 +80,10 @@ sub get_os {
         s/"|'//g;
         chomp;
     }
+    # Check for mac os
+    if ($os == "Darwin"){
+      $os = "OSX";
+    }
     return $os;
 }
 
@@ -97,6 +101,11 @@ sub get_de {
 	# checking WM through `wmctrl`
 	my $wmctrl = `wmctrl -m`;
 	($de) = $wmctrl =~ /Name : (.*)/;
+    }
+    unless($de) {
+      if ($os == "OSX"){
+      ($de) = "Apple Inc.";
+      }
     }
     unless ($de) { $de = "Unknown" }
     return $de;
@@ -139,6 +148,8 @@ sub get_packages {
     unless ($pacs) { $pacs = `rpm -qa 2>/dev/null` }
     # for nixos
     unless ($pacs) { $pacs = `nix-store -qR /run/current-system/sw/ 2>/dev/null && nix-store -qR ~/.nix-profile/ 2>/dev/null` }
+    # for OSX
+    unless ($pacs) { $pacs = `brew list 2>/dev/null` }
 
     my $count = $pacs =~ tr/\n//;
     unless ($count) { $count = "Unknown" }
