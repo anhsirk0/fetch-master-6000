@@ -63,7 +63,7 @@ ${YELLOW}Usage:${NC} $prog ${BLUE}<options>${NC}
  ${RED}--dry-run${NC},${RED}  -dr    ${GREEN}Dry run fm6000${NC}
  ${RED}--headless${NC},${RED} -y     ${GREEN}install headless(without prompting)${NC}
 "
-		return 1
+		exit 1
 		;;
 	esac
 done
@@ -137,7 +137,7 @@ if [ -f "fm6000" ] && [ -s "fm6000" ]; then
 	chmod +x fm6000 && out "${BLUE}Making the script executable : ${GREEN}done"
 
 	# shellcheck disable=SC2086
-	if check_dep "find" && [ "$(find /usr/bin /usr/local/bin $HOME/.local/bin -type f -iname 'fm6000')" ]; then
+	if check_dep "find" && [ "$(find /usr/bin /usr/local/bin $HOME/.local/bin -type f -iname 'fm6000' 2>/dev/null)" ]; then
 		out "${RED}it seems fm6000 is already installed but continuing anyway${NC}"
 	fi
 
@@ -160,14 +160,14 @@ if [ -f "fm6000" ] && [ -s "fm6000" ]; then
 		printf '%b' "${CYAN}"
 		$sudo mv -v fm6000 $install_path || {
 			out "${RED}error: $sudo failed${NC}"
-			return 1
+			exit 1
 		}
 		out "${GREEN}Fetch-master-6000 is successfully installed${NC}"
-		return 0
+		exit 0
 	else
 		out "${YELLOW}Script not moved!${NC}"
 		./fm6000
-		return 0
+		exit 0
 	fi
 else
 	out "${RED}Unable to download the script${NC}"
