@@ -137,7 +137,7 @@ if [ -f "fm6000" ] && [ -s "fm6000" ]; then
 	chmod +x fm6000 && out "${BLUE}Making the script executable : ${GREEN}done"
 
 	# shellcheck disable=SC2086
-	if check_dep "find" && [ "$(find /usr/bin /usr/local/bin $HOME/.local/bin -type f -iname 'fm6000')" ]; then
+	if check_dep "find" && [ "$(find /usr/bin /usr/local/bin $HOME/.local/bin -type f -iname 'fm6000' 2>/dev/null)" ]; then
 		out "${RED}it seems fm6000 is already installed but continuing anyway${NC}"
 	fi
 
