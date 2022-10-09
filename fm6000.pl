@@ -103,7 +103,7 @@ sub get_de {
 	($de) = $wmctrl =~ /Name : (.*)/;
     }
     unless($de) {
-      if ($os == "OSX"){
+      if ($os eq "OSX"){
       ($de) = "Apple Inc.";
       }
     }
