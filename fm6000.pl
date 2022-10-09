@@ -157,8 +157,15 @@ sub get_packages {
 }
 
 sub get_uptime {
+    my $boot;
     my $uptime = `uptime -s`;
-    my $boot = `date -d"$uptime" +%s`;
+    # for mac os
+    unless ($uptime) {
+        $boot = `sysctl -n kern.boottime | awk '{print $4}'`;
+        $boot =~ s/,//g;
+    } else { # For Linux/BSD
+        $boot = `date -d"$uptime" +%s`;
+    }
     my $now = time();
     my $seconds = $now - $boot;
 
