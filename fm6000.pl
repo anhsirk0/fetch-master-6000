@@ -174,7 +174,8 @@ sub get_uptime {
     my $h = $seconds / 60 / 60 % 24;
     my $m = $seconds / 60 % 60;
     my $time = $d . "d, " . $h . "h, " . $m . "m";
-    $time =~ s/0., //g;
+    $time =~ s/^0., //g;
+    $time =~ s/, 0.//g;
     return $time;
 }
 
