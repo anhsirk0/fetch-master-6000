@@ -81,7 +81,7 @@ sub get_os {
         chomp;
     }
     # Check for mac os
-    if ($os == "Darwin"){
+    if ($os eq "Darwin"){
       $os = "OSX";
     }
     return $os;
