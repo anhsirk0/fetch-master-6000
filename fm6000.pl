@@ -157,17 +157,16 @@ sub get_packages {
 }
 
 sub get_uptime {
-      # for mac os
+    my $boot;
+    # macOS
     if ($os eq "OSX") {
-      my $boottime =`sysctl -n kern.boottime | awk '{print \$4}'`;
-      my $unixtime=`date +%s`;
-      my $timeAgo=$unixtime - $boottime;
-      my $uptime=`awk -v time=$timeAgo 'BEGIN { seconds = time % 60; minutes = int(time / 60 % 60); hours = int(time / 60 / 60 % 24); days = int(time / 60 / 60 / 24); printf("%.0f d, %.0f h, %.0f m, %.0f s", days, hours, minutes, seconds); exit }'`;
-      return $uptime
+        $boot = `sysctl -n kern.boottime`;
+        ($boot) = $boot =~ /{ sec = (\d+)/;
+    } else {
+        # For Linux/BSD
+        $boot = `date -d "\$(uptime -s)" +%s`;
     }
-    #
-    # For Linux/BSD
-    my $boot = `date -d "\$(uptime -s)" +%s`;
+
     my $now = time();
     my $seconds = $now - $boot;
 
@@ -175,7 +174,8 @@ sub get_uptime {
     my $h = $seconds / 60 / 60 % 24;
     my $m = $seconds / 60 % 60;
     my $time = $d . "d, " . $h . "h, " . $m . "m";
-    $time =~ s/0., //g;
+    $time =~ s/^0., //g;
+    $time =~ s/, 0.//g;
     return $time;
 
 }
