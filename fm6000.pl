@@ -157,13 +157,17 @@ sub get_packages {
 }
 
 sub get_uptime {
+      # for mac os
+    if ($os eq "OSX") {
+      my $boottime =`sysctl -n kern.boottime | awk '{print \$4}'`;
+      my $unixtime=`date +%s`;
+      my $timeAgo=$unixtime - $boottime;
+      my $uptime=`awk -v time=$timeAgo 'BEGIN { seconds = time % 60; minutes = int(time / 60 % 60); hours = int(time / 60 / 60 % 24); days = int(time / 60 / 60 / 24); printf("%.0f d, %.0f h, %.0f m, %.0f s", days, hours, minutes, seconds); exit }'`;
+      return $uptime
+    }
+    #
     # For Linux/BSD
     my $boot = `date -d "\$(uptime -s)" +%s`;
-    # for mac os
-    if ($os eq "OSX") {
-        $boot = `sysctl -n kern.boottime | awk '{print $4}'`;
-        $boot =~ s/,//g;
-    }
     my $now = time();
     my $seconds = $now - $boot;
 
@@ -173,6 +177,7 @@ sub get_uptime {
     my $time = $d . "d, " . $h . "h, " . $m . "m";
     $time =~ s/0., //g;
     return $time;
+
 }
 
 # today's internet usage via vnstat
