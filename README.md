@@ -118,8 +118,8 @@ fm6000 -say "Hello world!"
 **-s** or **--say=STR** Say provided text instead of info
 **-sf** or **--say-file=STR** Say text from a file instead of info
 **-m** or **--margin=INT** Spaces on the left side of info
-**-g** or **--gap=INT** Spaces between info and info_value
-**-l** or **--length=INT** Length of the board ( > 14)
+**-g** or **--gap=INT** Spaces between info and info_value (default 10)
+**-l** or **--length=INT** Length of the board (default 13)
 **-h** or **--help** Print this help message
 
 ## Available colors
