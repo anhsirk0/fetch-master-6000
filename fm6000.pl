@@ -494,8 +494,8 @@ sub print_help {
     -s, --say=STR \t\t Say provided text instead of info
     -sf, --say-file=STR \t Say text from a file instead of info
     -m, --margin=INT \t\t Spaces on the left side of info
-    -g, --gap=INT \t\t Spaces between info and info_value
-    -l, --length=INT \t\t Length of the board ( > 14)
+    -g, --gap=INT \t\t Spaces between info and info_value (default 10)
+    -l, --length=INT \t\t Length of the board (default 13)
     -h, --help \t\t\t Print this help message\n\n};
     $help_text .= "available colors:\n    " . join(", ", splice(@colors, 0, 8));
     $help_text .= "\n    " . join(", ", @colors) . ", random\n";
