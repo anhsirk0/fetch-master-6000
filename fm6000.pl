@@ -10,7 +10,7 @@ use Text::Wrap;
 use experimental 'smartmatch';
 use POSIX;
 
-my $length = 13;
+my $width = 13;
 my $gap = 10;
 my $margin = 2;
 my $color = 'yellow';
@@ -198,7 +198,7 @@ sub format_info {
     # format => "MARGIN PLACEHOLDER GAP NAME"
     my $text = ' ' x $margin . colored($info{'placeholder'}, $info{'color'});
     $text .= ' ' x ($gap - length $info{'placeholder'});
-    $text .= $info{'name'} . ' ' x ($length - length $info{'name'});
+    $text .= $info{'name'} . ' ' x ($width - length $info{'name'});
     return $text;
 }
 
@@ -222,7 +222,7 @@ sub get_info {
         "uptime|u=s" => \$up,
         "packages|p=i" => \$pac,
         "margin|m=i" => \$margin,
-        "length|l=i" => \$length,
+        "length|l=i" => \$width,
         "gap|g=i" => \$gap,
         "color|c=s" => \$color,
         "not_de|nd" => \$not_de,
@@ -256,25 +256,25 @@ sub get_info {
     }
 
     if ($say) {
-        my $total_length = $length + $gap - $margin; # total length of the text box
+        my $total_length = $width + $gap - $margin; # total length of the text box
         my $total_chars =  length($say) + 10 * $margin; # including margin on each line
 
         if ($total_chars / $total_length > 8) {
-            $length = $length + ceil(1.6 * $total_chars / $total_length);
+            $width = $width + ceil(1.6 * $total_chars / $total_length);
         }
 
-        $Text::Wrap::columns = $length + $gap - $margin;
+        $Text::Wrap::columns = $width + $gap - $margin;
         my @new_info;
         @info = split "\n", wrap("" , "", $say);
 
         my $number_of_lines = scalar @info;
         for my $i (0 .. ($number_of_lines - 1)) {
-            $new_info[$i] = " " x $margin . $info[$i] . " " x ($length + $gap - length $info[$i]);
+            $new_info[$i] = " " x $margin . $info[$i] . " " x ($width + $gap - length $info[$i]);
         }
         # if say text is less than 6 lines we can add two empty lines (at start and end)
         if ($number_of_lines <= 6) {
-            unshift(@new_info, " " x ($length + $gap + $margin));
-            push(@new_info, " " x ($length + $gap + $margin));
+            unshift(@new_info, " " x ($width + $gap + $margin));
+            push(@new_info, " " x ($width + $gap + $margin));
         }
         return @new_info;
     }
@@ -349,7 +349,7 @@ sub get_info {
     $usg = format_info(\%usg);
 
     my $i = 0;
-    $info[$i++] = ' ' x ($length + $gap + $margin);
+    $info[$i++] = ' ' x ($width + $gap + $margin);
     $info[$i++] = $os;
     if ($vnstat eq '-1' ) { $info[$i++] = $ke; }
     $info[$i++] = $de;
@@ -357,7 +357,7 @@ sub get_info {
     $info[$i++] = $up;
     $info[$i++] = $pac;
     unless ($vnstat eq '-1' ) { $info[$i++] = $usg }
-    $info[$i++] = ' ' x ($length + $gap + $margin);
+    $info[$i++] = ' ' x ($width + $gap + $margin);
 
     return @info;
 }
@@ -377,8 +377,8 @@ sub main {
     for my $i (0 .. scalar @info - 1) {
         $info_lines[$i] = colored(q{│}, $color) . $info[$i] . colored('│', $color),
     }
-    unshift(@info_lines, colored(q{╭} . '─' x ($length + $margin + $gap) . '╮', $color));
-    push(@info_lines, colored(q{╰} . '─' x ($length + $margin + $gap) . '╯', $color));
+    unshift(@info_lines, colored(q{╭} . '─' x ($width + $margin + $gap) . '╮', $color));
+    push(@info_lines, colored(q{╰} . '─' x ($width + $margin + $gap) . '╯', $color));
 
     # select random file from given Directory
     if ($random_dir) { $ascii_file = get_random_file() }
