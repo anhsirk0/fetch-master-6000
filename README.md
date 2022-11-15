@@ -98,29 +98,30 @@ fm6000 -say "Hello world!"
 ![geometry.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/geometry.png)
 
 ## Available Options
-**-c** or **--color=STR** Base color
-**-w** or **--wally** Display Wally
-**-dog** or **--dogbert** Display Dogbert
-**-al** or **--alice** Display Alice
-**-phb** or **--phb** Display Pointy haired Boss
-**-as** or **--asok** Display Asok
-**-nd** or **--not_de** To use 'WM' instead of 'DE'
-**-o** or **--os=STR** OS name
-**-k** or **--kernel=STR** Kernel version
-**-d** or **--de=STR** Desktop environment name
-**-sh** or **--shell=STR** Shell name
-**-u** or **--uptime=STR** Uptime
-**-p** or **--package=INT** Number of packages
-**-v** or **--vnstat=STR** Use vnstat instead of kernel
-**-f** or **--file** Display art from file
-**-r** or **--random** Display Random Art
-**-rd** or **--random-dir=STR** Directory for random ascii art
-**-s** or **--say=STR** Say provided text instead of info
-**-sf** or **--say-file=STR** Say text from a file instead of info
-**-m** or **--margin=INT** Spaces on the left side of info
-**-g** or **--gap=INT** Spaces between info and info_value (default 10)
-**-l** or **--length=INT** Length of the board (default 13)
-**-h** or **--help** Print this help message
+- **-c** or **--color=STR** Base color
+- **-w** or **--wally** Display Wally
+- **-dog** or **--dogbert** Display Dogbert
+- **-al** or **--alice** Display Alice
+- **-phb** or **--phb** Display Pointy haired Boss
+- **-as** or **--asok** Display Asok
+- **-nd** or **--not_de** To use 'WM' instead of 'DE'
+- **-o** or **--os=STR** OS name
+- **-k** or **--kernel=STR** Kernel version
+- **-d** or **--de=STR** Desktop environment name
+- **-sh** or **--shell=STR** Shell name
+- **-u** or **--uptime=STR** Uptime
+- **-p** or **--package=INT** Number of packages
+- **-v** or **--vnstat=STR** Use vnstat instead of kernel
+- **-f** or **--file** Display art from file
+- **-r** or **--random** Display Random Art
+- **-rd** or **--random-dir=STR** Directory for random ascii art
+- **-s** or **--say=STR** Say provided text instead of info
+- **-sf** or **--say-file=STR** Say text from a file instead of info
+- **-m** or **--margin=INT** Spaces on the left side of info
+- **-g** or **--gap=INT** Spaces between info and info_value (default 10)
+- **-l** or **--length=INT** Length of the board (default 13)
+- **-h** or **--help** Print this help message
+ 
 
 ## Available colors
 black  red  green  yellow  blue  magenta  cyan
