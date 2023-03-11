@@ -8,24 +8,24 @@ ASCII art of the Wolf is taken from [asciiart.eu](https://www.asciiart.eu/animal
 ASCII art of the Astronaut is taken from [this site](https://pastebin.com/T7tunPCa)
 
 ## Screenshots
-![all1.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all1.png)
-![al2l.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/all2.png)
-![arts.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/arts.png)
+![all1.png](https://i.postimg.cc/4NFttvwD/all1.png)
+![al2l.png](https://i.postimg.cc/pLhjB96p/all2.png)
+![arts.png](https://i.postimg.cc/4xD92JDw/arts.png)
 
 ## Installation
 Its just a perl script
-download it make it executable and put somewhere in your $PATH
+download it, make it executable and put somewhere in your $PATH
 
 **For Gentoo** refer to the [XDream's Repository](https://github.com/XDream8/dreamsrepo)
 **For Arch users** its available in the AUR as `fm6000`
 
 ## Via install script
 ```sh
-sh -c "$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)"
+sh -c "$(curl https://codeberg.org/anhsirk0/fetch-master-6000/raw/branch/main/install.sh)"
 ```
 ### install script help page
 ```sh
-sh -c "$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)" -- -h
+sh -c "$(curl https://codeberg.org/anhsirk0/fetch-master-6000/raw/branch/main/install.sh)" -- -h
 ```
 ### install script options
 - use --install-path option or set "install_path" variable(this variable defaults to $HOME/.local/bin, if it does not exist /usr/local/bin is used)
@@ -34,22 +34,22 @@ sh -c "$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/maste
 -
 ### example
 ```sh
-sh -c "$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)" -- --install-path=/usr/bin --root
+sh -c "$(curl https://codeberg.org/anhsirk0/fetch-master-6000/raw/branch/main/install.sh)" -- --install-path=/usr/bin --root
 ```
 **or**
 ```sh
-install_path=/usr/bin root=1 sh -c "$(curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/install.sh)"
+install_path=/usr/bin root=1 sh -c "$(curl https://codeberg.org/anhsirk0/fetch-master-6000/raw/branch/main/install.sh)"
 ```
 
 ## Manually
 with wget
 ``` sh
-wget https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl -O fm6000
+wget https://codeberg.org/anhsirk0/fetch-master-6000/raw/branch/main/fm6000.pl -O fm6000
 ```
 ### or
 with curl
 ``` sh
-curl https://raw.githubusercontent.com/anhsirk0/fetch-master-6000/master/fm6000.pl --output fm6000
+curl https://codeberg.org/anhsirk0/fetch-master-6000/raw/branch/main/fm6000.pl --output fm6000
 ```
 making it executable
 ```sh
@@ -82,7 +82,7 @@ bash fm6000
 ```bash
 fm6000 -f arch_logo.txt
 ```
-![arch_logo.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/arch_logo.png)
+![arch_logo.png](https://i.postimg.cc/h4sV4RmP/arch-logo.png)
 
 ### About custom ascii_art file
 every line should be of same length (use spaces if needed)
@@ -92,10 +92,10 @@ atleast 10 lines is required (use empty spaces lines if needed)
 ```bash
 fm6000 -say "Hello world!"
 ```
-![say.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/say.png)
+![say.png](https://i.postimg.cc/mr9QTcY0/say.png)
 
 ## Geometry
-![geometry.png](https://github.com/anhsirk0/fetch-master-6000/blob/master/screenshots/geometry.png)
+![geometry.png](https://i.postimg.cc/NMwRFgbL/geometry.png)
 
 ## Available Options
 - **-c** or **--color=STR** Base color
