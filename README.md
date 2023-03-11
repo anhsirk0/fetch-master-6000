@@ -8,9 +8,7 @@ ASCII art of the Wolf is taken from [asciiart.eu](https://www.asciiart.eu/animal
 ASCII art of the Astronaut is taken from [this site](https://pastebin.com/T7tunPCa)
 
 ## Screenshots
-![all1.png](https://i.postimg.cc/4NFttvwD/all1.png)
-![al2l.png](https://i.postimg.cc/pLhjB96p/all2.png)
-![arts.png](https://i.postimg.cc/4xD92JDw/arts.png)
+![all.png](https://postimg.cc/grwvSKVW)
 
 ## Installation
 Its just a perl script
