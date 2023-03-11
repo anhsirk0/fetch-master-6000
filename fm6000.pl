@@ -46,14 +46,20 @@ my @colors = ( # do not add 'random' here
     );
 
 my @wm = (
-    'fluxbox', 'openbox', 'blackbox', 'xfwm4', 'metacity', 'kwin', 'twin', 'icewm',
-    'pekwm', 'flwm', 'flwm_topside', 'fvwm', 'dwm', 'awesome', 'wmaker', 'stumpwm',
-    'musca', 'xmonad', 'i3', 'ratpoison', 'scrotwm', 'spectrwm', 'wmfs', 'wmii',
-    'beryl', 'subtle', 'e16', 'enlightenment', 'sawfish', 'emerald', 'monsterwm',
-    'dminiwm', 'compiz', 'Finder','herbstluftwm', 'howm', 'notion', 'bspwm', '2bwm',
-    'echinus', 'swm', 'budgie-wm', 'dtwm', '9wm', 'chromeos-wm', 'deepin-wm', 'sway',
-    'mwm', 'instawm', 'qtile', 'leftwm', 'none+leftwm'
+    '2bwm', '9wm', 'Finder', 'awesome', 'berry', 'beryl', 'blackbox', 'bspwm',
+    'budgie-wm', 'chromeos-wm', 'compiz', 'deepin-wm', 'dminiwm', 'dtwm', 'dwm',
+    'e16', 'echinus', 'emerald', 'enlightenment', 'fluxbox', 'flwm',
+    'flwm_topside', 'fvwm', 'herbstluftwm', 'howm', 'i3', 'icewm', 'instawm',
+    'kwin', 'leftwm', 'metacity', 'monsterwm', 'musca', 'mwm', 'none+leftwm'
+    'notion', 'openbox', 'pekwm', 'qtile', 'ratpoison', 'sawfish', 'scrotwm',
+    'spectrwm', 'stumpwm', 'subtle', 'sway', 'swm', 'twin', 'wmaker', 'wmfs',
+    'wmii', 'xfwm4', 'xmonad',
     );
+
+# print_help
+my $GREEN  = "bright_green";
+my $YELLOW = "yellow";
+my $BLUE   = "bright_blue";    # for string args
 
 sub get_os {
     my $os = `lsb_release -si 2>/dev/null`;
@@ -224,7 +230,7 @@ sub get_info {
         "length|l=i" => \$width,
         "gap|g=i" => \$gap,
         "color|c=s" => \$color,
-        "not_de|nd" => \$not_de,
+        "not-de|nd" => \$not_de,
         "vnstat|v:s" => \$vnstat,
         "wally|w" => \$wally,
         "dogbert|dog" => \$dogbert,
@@ -471,34 +477,64 @@ sub main {
     print $text;
 }
 
+sub format_option {
+    my ($short, $long, $desc, $args, $default) = @_;
+    $default ||= 0;
+    my $long_info = colored("--" . $long, $GREEN) .
+        ($args > 0 && colored(" <" . uc $long . ">", $GREEN));
+    my $long_width = length($long) * ($args + 1);
+
+    $long_info .= "\t";
+    if ($long_width < 16) { $long_info .= "\t" }
+    if ($long_width < 8) { $long_info .= "\t" }
+    my $text = "\t" . colored($short, $GREEN);
+    $text .= ", " . $long_info;
+    $text .= $desc . ($default ne 0 && " [default: " . $default . "]");
+    return $text . "\n";
+}
+
 sub print_help {
-    my $help_text = qq{usage: fm6000 [options]\n
-    -c, --color=STR \t\t Base color
-    -w, --wally \t\t Display Wally
-    -dog, --dogbert \t\t Display Dogbert
-    -al, --alice \t\t Display Alice
-    -phb, --phb \t\t Display Pointy haired Boss
-    -as, --asok \t\t Display Asok
-    -nd, --not_de \t\t To use 'WM' instead of 'DE'
-    -o, --os=STR \t\t OS name
-    -k, --kernel=STR \t\t Kernel version
-    -d, --de=STR \t\t Desktop environment name
-    -sh, --shell=STR \t\t Shell name
-    -u, --uptime=STR \t\t Uptime
-    -p, --package=INT \t\t Number of packages
-    -v, --vnstat=STR \t\t Use vnstat instead of kernel
-    -f, --file \t\t\t Display art from file
-    -r, --random \t\t Display Random Art
-    -rd, --random-dir=STR \t Directory for random ascii art
-    -s, --say=STR \t\t Say provided text instead of info
-    -sf, --say-file=STR \t Say text from a file instead of info
-    -m, --margin=INT \t\t Spaces on the left side of info
-    -g, --gap=INT \t\t Spaces between info and info_value (default 10)
-    -l, --length=INT \t\t Length of the board (default 13)
-    -h, --help \t\t\t Print this help message\n\n};
-    $help_text .= "available colors:\n    " . join(", ", splice(@colors, 0, 8));
-    $help_text .= "\n    " . join(", ", @colors) . ", random\n";
-    print $help_text;
+    printf(
+        "%s\n%s\n\n%s\n\n%s\n" . # About, Usage
+        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n" . # Options list
+        "%s\n%s\n%s\n" . # Colors
+        "%s\n%s\n%s\n%s\n", # Examples
+        colored("fm6000", $GREEN),
+        "Dilbert themed system info fetching tool.",
+        colored("USAGE:", $YELLOW) . "\n\t" . "fm6000 [OPTIONS]",
+        colored("OPTIONS:", $YELLOW),
+        format_option("h", "help", "Print help information", 0),
+        format_option("c", "color", "Base color", 1),
+        format_option("w", "wally", "Display wally", 0),
+        format_option("h", "help", "Print help information", 0),
+        format_option("dog", "dogbert", "Display Dogbert", 0),
+        format_option("al", "alice", "Display Alice", 0),
+        format_option("phb", "phb", "Display Pointy haired Boss", 0),
+        format_option("as", "asok", "Display Asok", 0),
+        format_option("nd", "not-de", "To use label 'WM' instead of 'DE'", 0),
+        format_option("o", "os", "OS name", 1),
+        format_option("k", "kernel", "Kernel version", 1),
+        format_option("d", "de", "Desktop environment name", 1),
+        format_option("sh", "shell", "Shell name", 1),
+        format_option("u", "uptime", "Uptime", 1),
+        format_option("p", "package", "Number of packages", 1),
+        format_option("v", "vnstat", "Show vnstat info instead of kernel", 1),
+        format_option("r", "random", "Display Random Art", 0),
+        format_option("rd", "random-dir", "Directory for random ascii art", 1),
+        format_option("f", "file", "Display art from file", 1),
+        format_option("s", "say", "Say provided text", 1),
+        format_option("sf", "say-file", "Say text from a file", 1),
+        format_option("m", "margin", "Spaces on the left side of info", 1),
+        format_option("g", "gap", "Gap between label and value", 1, 10),
+        format_option("l", "length", "Length of the Box", 1, 13),
+        colored("COLORS:", $YELLOW),
+        "\t" . join(", ", splice(@colors, 0, 8)),
+        "\t" . join(", ", @colors) . ", random\n",
+        colored("EXAMPLES:", $YELLOW),
+        "\tfm6000 --wally --color blue",
+        "\tfm6000 --random --color random",
+        "\tfm6000 --say 'Hello World!'",
+        );
 }
 
 main();
