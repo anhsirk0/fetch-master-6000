@@ -50,7 +50,7 @@ my @wm = (
     'budgie-wm', 'chromeos-wm', 'compiz', 'deepin-wm', 'dminiwm', 'dtwm', 'dwm',
     'e16', 'echinus', 'emerald', 'enlightenment', 'fluxbox', 'flwm',
     'flwm_topside', 'fvwm', 'herbstluftwm', 'howm', 'i3', 'icewm', 'instawm',
-    'kwin', 'leftwm', 'metacity', 'monsterwm', 'musca', 'mwm', 'none+leftwm'
+    'kwin', 'leftwm', 'metacity', 'monsterwm', 'musca', 'mwm', 'none+leftwm',
     'notion', 'openbox', 'pekwm', 'qtile', 'ratpoison', 'sawfish', 'scrotwm',
     'spectrwm', 'stumpwm', 'subtle', 'sway', 'swm', 'twin', 'wmaker', 'wmfs',
     'wmii', 'xfwm4', 'xmonad',
