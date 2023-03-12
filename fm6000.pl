@@ -487,7 +487,7 @@ sub format_option {
     $long_info .= "\t";
     if ($long_width < 16) { $long_info .= "\t" }
     if ($long_width < 8) { $long_info .= "\t" }
-    my $text = "\t" . colored($short, $GREEN);
+    my $text = "\t" . colored("-" . $short, $GREEN);
     $text .= ", " . $long_info;
     $text .= $desc . ($default ne 0 && " [default: " . $default . "]");
     return $text . "\n";
