@@ -163,18 +163,25 @@ sub get_packages {
 }
 
 sub get_uptime {
-    my $boot;
+    my $seconds;
+    my $now = time();
     # macOS
     if ($os eq "OSX") {
-        $boot = `sysctl -n kern.boottime`;
+        my $boot = `sysctl -n kern.boottime`;
         ($boot) = $boot =~ /{ sec = (\d+)/;
+        $seconds = $now - $boot;
     } else {
         # For Linux/BSD
-        $boot = `date -d "\$(uptime -s)" +%s`;
+        if (open(FH, "<" . "/proc/uptime")) {
+            chomp($seconds = <FH>);
+            close(FH);
+            $seconds =~ s/\.*$//;
+            $seconds = int($seconds);
+        } else {
+            my $boot = `date -d "\$(uptime -s)" +%s`;
+            $seconds = $now - $boot;
+        }
     }
-
-    my $now = time();
-    my $seconds = $now - $boot;
 
     my $d = int($seconds / 60 / 60 / 24);
     my $h = $seconds / 60 / 60 % 24;
