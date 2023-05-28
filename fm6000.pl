@@ -170,9 +170,6 @@ sub get_uptime {
         my $boot = `sysctl -n kern.boottime`;
         ($boot) = $boot =~ /{ sec = (\d+)/;
         $seconds = $now - $boot;
-    } elsif ($os eq "OpenBSD") {
-        my $boot = `sysctl -n kern.boottime`;
-        $seconds = $now - $boot;
     } else {
         # For Linux/BSD
         if (open(FH, "<" . "/proc/uptime")) {
@@ -180,7 +177,10 @@ sub get_uptime {
             close(FH);
             $seconds =~ s/\.*$//;
             $seconds = int($seconds);
-        } else {
+        } elsif ($os =~ m/BSD/i) {
+	    my $boot = `sysctl -n kern.boottime`;
+	    $seconds = $now - $boot;
+	} else {
             my $boot = `date -d "\$(uptime -s)" +%s`;
             $seconds = $now - $boot;
         }
