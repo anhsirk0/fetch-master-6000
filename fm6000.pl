@@ -184,7 +184,7 @@ sub get_usage {
         $today =~ s/^ *//;
         last;
     }
-    return $today | "Unknown";
+    return $today || "Unknown";
 }
 
 sub format_info {
