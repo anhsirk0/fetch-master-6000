@@ -56,7 +56,6 @@ my @wm = (
     'wmii', 'xfwm4', 'xmonad',
     );
 
-# print_help
 my $GREEN  = "bright_green";
 my $YELLOW = "yellow";
 my $BLUE   = "bright_blue";    # for string args
@@ -64,15 +63,12 @@ my $BLUE   = "bright_blue";    # for string args
 sub get_os {
     my $os = `lsb_release -si 2>/dev/null`;
     unless ($os) {
-        my $os_release_file = "/etc/os-release";
-        if (-f $os_release_file) {
-            open(FH, "<", $os_release_file);
+        if (open(FH, "<", "/etc/os-release")) {
             while(<FH>) {
-                if ($_ =~ m/^NAME/) {
-                    $os = $_;
-                    $os =~ s/NAME=//;
-                    last;
-                }
+                next unless ($_ =~ m/^NAME/);
+                $os = $_;
+                $os =~ s/NAME=//;
+                last;
             }
         }
     }
@@ -80,55 +76,39 @@ sub get_os {
     unless ($os) { $os = `[ -x "/etc/portage" ] && echo "Gentoo" 2>/dev/null` }
     # for BSD
     unless ($os) { $os = `uname -s 2>/dev/null` }
-    unless ($os) { $os = "Unknown" }
-    for($os) {
-        s/ Linux//i;
-        s/"|'//g;
-        chomp;
-    }
+    s/ Linux//i, s/"|'//g, chomp for ($os);
     # Check for mac os
-    if ($os eq "Darwin"){
-      $os = "OSX";
-    }
-    return $os;
+    if ($os eq "Darwin") { $os = "OSX"; }
+    return $os || "Unknown";
 }
 
 sub get_de {
-    my $de = $ENV{DESKTOP_SESSION};
-    unless ($de) { $de = $ENV{XDG_SESSION_DESKTOP} }
+    my $de = $ENV{DESKTOP_SESSION} || $ENV{XDG_SESSION_DESKTOP};
     unless ($de) { $de = $ENV{XDG_CURRENT_DESKTOP} }
     unless ($de) {
-	# checking WM through `ps`
-	my $ps_flags = ($os =~ /bsd/i) ? "x -c" : "-e";
-	my $ps = `ps $ps_flags`;
-	($de) = $ps =~ /(dwm|xmonad|2bwm|tinywm|fvwm|monsterwm|catwm|sowm|openbox|sway)/i;
+        # checking WM through `ps`
+        my $ps_flags = ($os =~ /bsd/i) ? "x -c" : "-e";
+        my $ps = `ps $ps_flags`;
+        ($de) = $ps =~ /(2bwm|tinywm|fvwm|monsterwm|catwm|sowm|openbox|sway)/i;
     }
     unless ($de) {
-	# checking WM through `wmctrl`
-	my $wmctrl = `wmctrl -m`;
-	($de) = $wmctrl =~ /Name : (.*)/;
+        # checking WM through `wmctrl`
+        my $wmctrl = `wmctrl -m`;
+        ($de) = $wmctrl =~ /Name : (.*)/;
     }
-    unless($de) {
-      if ($os eq "OSX"){
-      ($de) = "Apple Inc.";
-      }
-    }
-    unless ($de) { $de = "Unknown" }
-    return $de;
+    unless($de) { $de = "Apple Inc." if ($os eq "OSX"); }
+    return $de || "Unknown";
 }
 
 sub get_shell {
     my $sh = (split '/', $ENV{SHELL})[-1];
-    unless ($sh) { $sh = "Unknown" }
-    return $sh;
+    return $sh || "Unknown";
 }
 
 sub get_kernel {
     my $ke = `uname -r`;
-    $ke =~ s/-.*//;
-    chomp $ke;
-    unless ($ke) { $ke = "Unknown" }
-    return $ke;
+    s/-.*//, chomp for ($ke);
+    return $ke || "Unknown";
 }
 
 sub get_packages {
@@ -158,8 +138,7 @@ sub get_packages {
     unless ($pacs) { $pacs = `brew list 2>/dev/null` }
 
     my $count = $pacs =~ tr/\n//;
-    unless ($count) { $count = "Unknown" }
-    return $count;
+    return $count || "Unknown";
 }
 
 sub get_uptime {
@@ -178,9 +157,9 @@ sub get_uptime {
             $seconds =~ s/\.*$//;
             $seconds = int($seconds);
         } elsif ($os =~ m/BSD/i) {
-	    my $boot = `sysctl -n kern.boottime`;
-	    $seconds = $now - $boot;
-	} else {
+            my $boot = `sysctl -n kern.boottime`;
+            $seconds = $now - $boot;
+        } else {
             my $boot = `date -d "\$(uptime -s)" +%s`;
             $seconds = $now - $boot;
         }
@@ -199,13 +178,13 @@ sub get_usage {
     my $data = `vnstat`;
     my $today;
     foreach my $line (split '\n', $data) {
-        if ($line =~ /today/) {
-            $line =~ s/\|/\//g; # newer vnstat uses | as separator
-            $today = (split '/', $line)[2];
-            $today =~ s/^ *//;
-        }
+        next unless ($line =~ /today/);
+        $line =~ s/\|/\//g; # newer vnstat uses | as separator
+        $today = (split '/', $line)[2];
+        $today =~ s/^ *//;
+        last;
     }
-    return $today;
+    return $today | "Unknown";
 }
 
 sub format_info {
@@ -219,12 +198,11 @@ sub format_info {
 
 sub get_random_file {
     if (-d $random_dir) {
-	my @files = glob($random_dir . "/*");
-	return @files[int(rand scalar @files)]
-    } else {
-	print "Please provide a Directory\n";
-	exit;
-    }
+        my @files = glob($random_dir . "/*");
+        return @files[int(rand scalar @files)]
+    } 
+    print "Please provide a Directory\n";
+    exit(1);
 }
 
 sub get_info {
@@ -254,20 +232,15 @@ sub get_info {
         "say-file|sf=s" => \$say_file,
         );
 
-    if ($help) {
-        print_help();
-        exit;
-    }
+    print_help_and_exit() if ($help);
 
-    if ($color eq "random") {
-        $color = @colors[int(rand scalar @colors)];
-    }
+    $color = @colors[int(rand scalar @colors)] if ($color eq "random");
 
     if ($say_file) {
         open (FH, "<", $say_file) or die "Unable to open $say_file";
-	while (<FH>) { $say .= $_ }
-	close(FH);
-	chomp $say;
+        while (<FH>) { $say .= $_ }
+        close(FH);
+        chomp $say;
     }
 
     if ($say) {
@@ -301,58 +274,43 @@ sub get_info {
     unless ($up) { $up = get_uptime(); }
     unless ($pac) { $pac = get_packages(); }
 
-    if ($not_de) {
-        $de_placeholder = 'WM';
-    }
-
-    if ($de ~~ @wm) {
-        $de_placeholder = 'WM';
-    }
-
-    if ($vnstat eq '') {
-        $vnstat = get_usage();
-    }
+    $de_placeholder = 'WM' if ($not_de || $de ~~ @wm);
+    $vnstat = get_usage() if ($vnstat eq '');
 
     my %usg = (
         'placeholder' => 'VNSTAT',
-        'color' => 'magenta',
-        'name' => $vnstat,
+        'color'       => 'magenta',
+        'name'        => $vnstat,
         );
-
     my %os = (
         'placeholder' => 'OS',
-        'color' => 'bright_green',
-        'name' => $os,
+        'color'       => 'bright_green',
+        'name'        => $os,
         );
-
     my %ke = (
         'placeholder' => 'KERNEL',
-        'color' => 'blue',
-        'name' => $ke,
+        'color'       => 'blue',
+        'name'        => $ke,
         );
-
     my %de = (
         'placeholder' => $de_placeholder,
-        'color' => 'bright_magenta',
-        'name' => $de,
+        'color'       => 'bright_magenta',
+        'name'        => $de,
         );
-
     my %sh = (
         'placeholder' => 'SHELL',
-        'color' => 'yellow',
-        'name' => $sh,
+        'color'       => 'yellow',
+        'name'        => $sh,
         );
-
     my %up = (
         'placeholder' => 'UPTIME',
-        'color' => 'magenta',
-        'name' => $up,
+        'color'       => 'magenta',
+        'name'        => $up,
         );
-
     my %pac = (
         'placeholder' => 'PACKAGES',
-        'color' => 'cyan',
-        'name' => $pac,
+        'color'       => 'cyan',
+        'name'        => $pac,
         );
 
     $os = format_info(\%os);
@@ -386,7 +344,6 @@ sub main {
         ($wally, $dogbert, $alice, $phb, $asok) = splice @arr, 0, 4;
     }
 
-    # my $i = 0;
     my @info_lines = (); # info about os, wm etc etc
 
     for my $i (0 .. scalar @info - 1) {
@@ -404,7 +361,7 @@ sub main {
     if ($ascii_file) {
         open (FH, "<", $ascii_file) or die "Unable to open $ascii_file";
         chomp(my @ascii =  <FH>);
-	close(FH);
+        close(FH);
         my $offset = abs int(scalar @ascii / 2 - 5); # to keep info in middle
 
         for (my $i = 0; $i < scalar @ascii; $i++) {
@@ -483,8 +440,7 @@ sub main {
         $text .= colored(q{        @      }, $color) . $info_lines[$i++] . "\n";
     }
 
-    $text .= "\n";
-    print $text;
+    print $text . "\n";
 }
 
 sub format_option {
@@ -503,7 +459,7 @@ sub format_option {
     return $text . "\n";
 }
 
-sub print_help {
+sub print_help_and_exit {
     printf(
         "%s\n%s\n\n%s\n\n%s\n" . # About, Usage
         "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n" . # Options list
@@ -545,6 +501,7 @@ sub print_help {
         "\tfm6000 --random --color random",
         "\tfm6000 --say 'Hello World!'",
         );
+    exit;
 }
 
 main();
