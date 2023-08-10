@@ -7,7 +7,6 @@ use strict;
 use Term::ANSIColor;
 use Getopt::Long;
 use Text::Wrap;
-use experimental 'smartmatch';
 use POSIX;
 
 my $width = 13;
@@ -274,7 +273,7 @@ sub get_info {
     unless ($up) { $up = get_uptime(); }
     unless ($pac) { $pac = get_packages(); }
 
-    $de_placeholder = 'WM' if ($not_de || $de ~~ @wm);
+    $de_placeholder = 'WM' if ($not_de || grep(/^$de$/i, @wm));
     $vnstat = get_usage() if ($vnstat eq '');
 
     my %usg = (
